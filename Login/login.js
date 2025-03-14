@@ -25,3 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
         createModal("로그인이 완료되었습니다!");
     });
 });
+
+document.getElementById("signupBtn").addEventListener("click", function () {
+    window.location.href = "./SignUp/signup.html";
+});
+
+document.getElementById("backBtn").addEventListener("click", function () {
+    window.location.href = "./Home/home.html";
+});

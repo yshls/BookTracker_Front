@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>독서 노트 클론</title>
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/0af8d4fa80.js" crossorigin="anonymous"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 왼쪽 사이드바 -->
+        <div class="sidebar"></div>
+
+        <!-- 메인 콘텐츠 -->
+        <main class="main-content">
+            <header class="header">
+                <a href="#" class="back-home">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="size-6" width="24" height="24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                    </svg>                      
+                </a>
+                <h1 class="title">로그인</h1>
+            </header>
+
+            <section class="section">
+                <div class="input-email">
+                    <label for="email" class="form-label">이메일</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        placeholder="이메일"
+                        name="email"
+                    />
+                </div>
+    
+                <div class="input-pwd">
+                    <label for="pwd" class="form-label">비밀번호</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="pwd"
+                        placeholder="8자 이상의 비밀번호"
+                        name="pwd"
+                    />
+                </div>
+    
+                <div class="btn">
+                    <button type="submit" class="login-btn" id="loginBtn">로그인</button>
+                    <a class="signup-link" href="#"><button type="submit" class="signup-btn" id="signupBtn">가입하기</button></a>
+                </div>
+
+                <div class="find-btn">
+                    <button>이메일 찾기</button>
+                    <p>|</p>
+                    <button>비밀번호 찾기</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- 푸터 -->
+        <footer>
+            <p>Copyright © 2025 yshls, H-JuKyung All Rights Reserved.</p>
+        </footer>
+        
+        <!-- 오른쪽 사이드바 -->
+        <div class="sidebar"></div>
+    </div>
+
+    <!-- JavaScript-->
+    <script src="login.js"></script>
+</body>
+</html>

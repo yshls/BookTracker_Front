@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BookTracker</title>
+    <link rel="stylesheet" href="home.css" />
+    <script
+      src="https://kit.fontawesome.com/6333b8e185.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- 왼쪽 사이드바 -->
+      <div class="sidebar"></div>
+
+      <!-- 메인 콘텐츠 -->
+      <main class="main-content">
+        <!-- 네비게이션 -->
+        <nav class="title">
+          <h1>독서노트</h1>
+          <ul class="auth-links">
+            <li><a href="#">SignUp</a></li>
+            <li><a href="#">Login</a></li>
+          </ul>
+        </nav>
+
+        <!-- 프로필 및 독서목표  -->
+        <div id="user">
+          <div class="user-area">
+            <div class="user-left">
+              <img src="./test-img.png" alt="프로필사진" class="user-img" />
+              <h3 id="userName">
+                <span>유레카</span>
+              </h3>
+            </div>
+          </div>
+
+          <div class="goal-container">
+            <div class="goal-header display-flex">
+              <p><i class="fa-solid fa-flag"></i> 2025 독서 목표</p>
+              <p class="toggle-btn">
+                33% 달성 <i class="fa-solid fa-chevron-down"></i>
+              </p>
+            </div>
+
+            <div class="progress-fold">
+              <div class="goal-body goal-flex">
+                <p class="goal-sub">현재 1권</p>
+                <p class="goal-sub">
+                  총 3권 <i class="fa-solid fa-pencil"></i>
+                </p>
+              </div>
+
+              <div class="progress-bar">
+                <div class="progress" style="width: 33%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 읽고있어요 공간 및 책 추가란 -->
+        <section class="content-area">
+          <div class="menu-area">
+            <ul class="tab-menu">
+              <li class="menu"><span>읽고 있어요</span></li>
+              <li class="menu"><span>다 읽었어요</span></li>
+              <li class="menu"><span>읽고 싶어요</span></li>
+            </ul>
+          </div>
+
+          <div class="search-area">
+            <i class="fa-solid fa-magnifying-glass search-item"></i>
+            <input type="text" placeholder="도서 제목, 작가 이름 검색" />
+
+            <button area-label="Clear Current SEarch">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <div class="list-header display-flex">
+            <h3 class="headline">0권</h3>
+            <div class="dropdown">
+              <input
+                type="text"
+                class="dropdown-input"
+                readonly
+                value="최근 읽은 순"
+              />
+              <ul class="dropdown-list">
+                <li class="dropdown-item">최근 읽은 순</li>
+                <li class="dropdown-item">가나다 순</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="book-empty">
+            <figure>
+              <i class="fa-solid fa-book-open"></i>
+            </figure>
+          </div>
+          <div class="book-desc">
+            <h4>
+              지금 읽고 있는 책을 등록해보세요<i
+                class="fa-regular fa-face-smile"
+              ></i>
+            </h4>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <p>Copyright © 2025 yshls, H-JuKyung All Rights Reserved.</p>
+      </footer>
+
+      <!-- 오른쪽 사이드바 -->
+      <div class="sidebar"></div>
+    </div>
+    <script src="home.js"></script>
+  </body>
+</html>

@@ -260,16 +260,17 @@ h1 {
 .dropdown {
   position: relative;
   display: inline-block;
-  width: 150px;
 }
-
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid #d1d1d1;
+  text-align: right;
+}
 .dropdown-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   cursor: pointer;
-  background: white;
+  text-align: right;
 }
 
 .dropdown-list {

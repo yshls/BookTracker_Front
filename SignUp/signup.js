@@ -25,3 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
         createModal("회원가입이 완료되었습니다!");
     });
 });
+
+document.getElementById("backBtn").addEventListener("click", function () {
+    window.location.href = "./Home/home.html";
+});

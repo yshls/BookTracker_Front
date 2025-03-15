@@ -1,11 +1,6 @@
-/**
- * main color: #fb6f92
- * sub color -1 : #ff8fab
- * sub color -2 : #ffb3c6
- * sub color -3 : #ffc2d1
- * sub color -4 : #ffe5ec
- */
-
+/* ========================================= */
+/* ✅ 공통 코드드
+/* ========================================= */
 @font-face {
   font-family: 'Pretendard-Regular';
   src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
@@ -60,19 +55,24 @@ body {
   height: 100vh;
 }
 
-/* 네비게이션 */
+/* ========================================= */
+/* ✅ 독서노트
+/* ========================================= */
 .title {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 20px 0px 0px 20px;
 }
 
 h1 {
   font-size: 26px;
 }
 
-/* 가입하기 및 로그인 */
+/* ========================================= */
+/* ✅ 가입하기 및 로그인
+/* ========================================= */
 .auth-links {
   list-style: none;
   display: flex;
@@ -81,6 +81,7 @@ h1 {
   padding: 10px;
   border-radius: 12px;
   transition: background 0.3s;
+  margin: 0 20px 0 0;
 }
 
 .auth-links li a {
@@ -105,10 +106,12 @@ h1 {
   width: 100%;
 }
 
-/* 프로필 및 독서목표 */
+/* ========================================= */
+/* ✅ 프로필 및 독서 목표
+/* ========================================= */
 #user {
-  padding: 20px;
-  width: 728px;
+  padding: 20px 0 0 0;
+  width: 710px;
 }
 
 .user-area {
@@ -135,7 +138,9 @@ h1 {
   height: 50px;
 }
 
-/* 독서 목표 */
+/* ========================================= */
+/* ✅ 독서 목표표
+/* ========================================= */
 .progress-fold {
   max-height: 0;
   overflow: hidden;
@@ -176,28 +181,144 @@ h1 {
   font-weight: 100;
 }
 
-/* 진행 바 */
-.progress-bar {
+.goal-setup {
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#enjoy-goal {
+  font-size: 18px;
+  font-weight: 800;
+}
+.goal-button {
+  color: #fff;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 50px;
+  height: 40px;
+  width: 142px;
+  margin-top: 10px;
+  background: #ff8fab;
+  font-weight: 800;
+  transition: padding 0.3s ease-in-out;
+}
+
+.goal-button:hover {
+  background: #fb6f92;
+  cursor: pointer;
+}
+
+.progress-container {
   width: 100%;
-  height: 8px;
-  background-color: #ffb3c6;
-  border-radius: 4px;
-  margin: 5px 0;
+  max-width: 100%;
+  margin: 10px auto;
 }
 
-.progress {
-  height: 8px;
+canvas {
+  width: 100%;
+  height: 10px;
+  background-color: #fff4f7;
+  border-radius: 10px;
+}
+
+/* ========================================= */
+/* ✅ 모달 창
+/* ========================================= */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 336px;
+  height: 220px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.book-goal {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.goal-question {
+  font-size: 16px;
+  font-weight: 200;
+}
+
+/* 입력 필드 스타일 */
+#goalInput {
+  height: 50px;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+}
+/* 모달 하단 버튼 컨테이너 */
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding-top: 15px;
+}
+
+/* 버튼 공통 스타일 */
+.modal-footer button {
+  flex: 1;
+  height: 40px;
+  border-radius: 30px;
+  font-size: 16px;
+  border: 1px solid #d1d1d1;
+  cursor: pointer;
+}
+
+/* ========================================= */
+/* ✅ 모달 버튼 스타일 -> 취소, 저장
+/* ========================================= */
+#cancelGoal {
+  background: none;
+  transition: background 0.3s ease-in-out;
+}
+
+#cancelGoal:hover {
+  background-color: #d1d1d1;
+}
+
+#saveGoal {
+  background-color: #ff8fab;
+  color: #fff;
+  border: none;
+  transition: background 0.3s ease-in-out;
+}
+
+#saveGoal:hover {
   background-color: #fb6f92;
-  border-radius: 4px;
 }
 
-/* 탭 메뉴 */
+/* ========================================= */
+/* ✅ 탭 메뉴 -> 읽고 있음, 다 읽음, 읽고 싶음음
+/* ========================================= */
 .menu {
   width: 220px;
   height: 54px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 .menu-area {
   width: 750px;
@@ -210,9 +331,28 @@ h1 {
   list-style: none;
   font-size: 18px;
   font-weight: 500;
+  position: relative;
+  margin-bottom: 16px;
 }
 
-/* 검색 */
+.menu.active {
+  font-weight: bold;
+  color: #000000;
+}
+
+.menu.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #fb6f92;
+}
+
+/* ========================================= */
+/* ✅ 검색
+/* ========================================= */
 .search-area {
   display: flex;
   align-items: center;
@@ -253,52 +393,119 @@ h1 {
   background: #fb6f92;
 }
 
-/* 책 0권, 최근 업데이트칸 */
+/* ========================================= */
+/* ✅ 책 0권
+/* ========================================= */
 .list-header {
   padding: 0px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
+
+/* ========================================= */
+/* ✅ 최근 읽은 순 -> 드롭다운운
+/* ========================================= */
+
 .dropdown {
   position: relative;
   display: inline-block;
+  width: 140px;
+  border: 2px solid #d1d1d1;
+  border-radius: 8px; /* 기본적으로 라운드 처리 */
+  transition: border-radius 0.3s ease;
+  box-sizing: border-box;
 }
+
+.dropdown.open {
+  border-radius: 8px 8px 0 0; /* 펼쳐질 때 아래쪽을 직각 */
+}
+
 .dropdown-toggle {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border: 2px solid #d1d1d1;
-  text-align: right;
-}
-.dropdown-input {
+  justify-content: space-between; /* 텍스트 왼쪽, 아이콘 오른쪽 */
   cursor: pointer;
-  text-align: right;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 2px 12px;
+}
+
+.dropdown-input {
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  background: transparent;
+  height: 34px;
+  width: 100%;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.dropdown-toggle i {
+  display: flex;
+  align-items: center;
 }
 
 .dropdown-list {
-  display: none;
   position: absolute;
+  top: 100%;
   width: 100%;
   background: white;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 2px solid #d1d1d1;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
   list-style: none;
-  padding: 0;
-  margin: 0;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.dropdown-list.show {
+.dropdown.open .dropdown-list {
   display: block;
 }
 
 .dropdown-item {
-  padding: 10px;
+  padding: 8px 12px;
   cursor: pointer;
+  white-space: nowrap;
+  text-align: left;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-size: 14px;
 }
 
 .dropdown-item:hover {
-  background: #eee;
+  background: #d1d1d1;
 }
 
+/* ========================================= */
+/* ✅ 배경에 글 써져있는거 바뀌는 코드
+/* ========================================= */
+.book-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 가운데 정렬 */
+  justify-content: center;
+  text-align: center;
+  margin-top: 50px; /* 위쪽 여백 조정 */
+  color: #656565; /* 텍스트 색상 */
+  font-size: 18px; /* 글자 크기 */
+  font-weight: 600; /* 글자 굵기 */
+}
+
+.book-desc figure {
+  margin-bottom: 10px; /* 아이콘과 텍스트 간격 */
+}
+
+.book-desc i {
+  color: #fb6f92; /* 아이콘 색상 */
+  margin-left: 5px; /* 아이콘과 텍스트 간격 */
+}
+
+/* ========================================= */
+/* ✅ footer
+/* ========================================= */
 footer {
   background-color: #f8f8f8;
   text-align: center;
@@ -311,7 +518,9 @@ footer {
   color: #999999;
 }
 
-/* ✅ 반응형 스타일 */
+/* ========================================= */
+/* ✅ 미디어 쿼리리
+/* ========================================= */
 @media (max-width: 1200px) {
   .sidebar {
     width: 200px; /* 화면이 작아질 때 사이드바 줄이기 */

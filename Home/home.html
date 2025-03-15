@@ -80,12 +80,15 @@
 
           <div class="search-area">
             <i class="fa-solid fa-magnifying-glass search-item"></i>
-            <input type="text" placeholder="도서 제목, 작가 이름 검색" />
-
-            <button area-label="Clear Current SEarch">
+            <input type="text" id="searchInput" placeholder="도서 제목, 작가 이름 검색" />
+          
+            <button id="clearBtn" aria-label="Clear Current Search">
               <i class="fa-solid fa-xmark"></i>
             </button>
           </div>
+          
+          <div id="resultArea"></div>
+          
 
           <div class="list-header display-flex">
             <h3 class="headline">0권</h3>
@@ -115,6 +118,8 @@
                 ></i>
               </h4>
             </div>
+            
+      <button class="add-btn"><a href="../Search/search.html">+</a></button>
           </div>
         </section>
       </main>
@@ -129,6 +134,7 @@
             id="goalInput"
             min="1"
             placeholder="목표 책 수 입력"
+            
           />
           <div class="modal-footer">
             <button id="cancelGoal" type="button">취소</button>

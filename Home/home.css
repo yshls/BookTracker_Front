@@ -504,6 +504,32 @@ canvas {
 }
 
 /* ========================================= */
+/* ✅ 추가버튼
+/* ========================================= */
+.add-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ff8fab;
+  color: #fff;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.add-btn a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.add-btn:hover {
+  background-color: #fb6f92;
+}
+
+/* ========================================= */
 /* ✅ footer
 /* ========================================= */
 footer {

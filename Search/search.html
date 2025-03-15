@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BookTracker</title>
+    <link rel="stylesheet" href="home.css" />
+    <script
+      src="https://kit.fontawesome.com/6333b8e185.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="search.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- 왼쪽 사이드바 -->
+      <div class="sidebar"></div>
+
+      <!-- 메인 콘텐츠 -->
+      <main class="main-content">
+        <nav>
+          <a href="../Home/home.html"><i class="fa-solid fa-xmark"></i></a>
+          <h4>독서노트에 담기</h4>
+        </nav>
+
+        <section class="content-area">
+          <div class="search-area">
+            <i class="fa-solid fa-magnifying-glass search-item"></i>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="도서 제목, 작가 이름 검색"
+            />
+
+            <button area-label="Clear Current SEarch">
+              <i id="clearBtn" class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <div id="resultArea">
+            <p id="placeholderText">
+              <i class="fa-solid fa-comments"></i>검색 결과가 없습니다.
+            </p>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <p>Copyright © 2025 yshls, H-JuKyung All Rights Reserved.</p>
+      </footer>
+
+      <!-- 오른쪽 사이드바 -->
+      <div class="sidebar"></div>
+    </div>
+    <script src="search.js"></script>
+  </body>
+</html>

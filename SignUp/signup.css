@@ -90,12 +90,48 @@ body {
 
 .form-label {
     margin-left: 8px;
+    color: black;
+    font-size: 14px;
+}
+
+.label-name {
+    display: flex;
+    justify-content: space-between; /* 양쪽 정렬 */
+    align-items: center;
+    width: 100%; /* 부모 요소가 입력 필드와 동일한 크기 */
+}
+
+.checkname-btn {
+    margin-left: auto; /* 자동으로 오른쪽 정렬 */
+    background-color: #FB6F92;
+    color: white;
+    border-radius: 10px;
+    padding: 4px 8px;
+    cursor: pointer;
+    border: none;
+    font-size: 12px;
+    font-weight: lighter;
+    font-family: 'Pretendard-Regular';
 }
 
 .input-name {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+.nickname-message {
+    font-size: 12px;
+    margin-left: 8px;
+}
+
+.nickname-available {
+    color: green;
+}
+
+.nickname-taken {
+    color: red;
 }
 
 .input-email {
@@ -112,9 +148,23 @@ body {
     gap: 8px;
 }
 
-.form-label {
-    color: black;
-    font-size: 14px;
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+  
+#pwd {
+    flex: 1;
+    padding-right: 40px;
+}
+  
+.toggle-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    user-select: none; 
+    color: #FB6F92;
 }
 
 .form-control {

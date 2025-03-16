@@ -27,7 +27,10 @@
 
             <section class="section">
                 <div class="input-name">
-                    <label for="nickname" class="form-label">닉네임</label>
+                    <div class="label-name">
+                        <label for="nickname" class="form-label">닉네임</label>
+                        <button class="checkname-btn" id="checknameBtn">중복 확인</button>
+                    </div>
                     <input
                         type="text"
                         class="form-control"
@@ -35,6 +38,7 @@
                         placeholder="닉네임"
                         name="nickname"
                     />
+                    <div id="nicknameMessage" class="nickname-message"></div>
                 </div>
 
                 <div class="input-email">
@@ -50,13 +54,18 @@
     
                 <div class="input-pwd">
                     <label for="pwd" class="form-label">비밀번호</label>
-                    <input
-                        type="password"
-                        class="form-control"
-                        id="pwd"
-                        placeholder="8자 이상의 비밀번호"
-                        name="pwd"
-                    />
+                    <div class="password-container">
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="pwd"
+                            placeholder="8자 이상의 비밀번호 (특수문자와 숫자 포함)"
+                            name="pwd"
+                        />
+                        <span id="togglePwd" class="toggle-icon">
+                            <i class="fa-solid fa-eye"></i>
+                        </span>
+                    </div>
                 </div>
     
                 <div class="btn">

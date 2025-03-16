@@ -530,6 +530,65 @@ canvas {
 }
 
 /* ========================================= */
+/* ✅ 읽고 싶어요 불러오는 css
+/* ========================================= */
+
+.book-item {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  width: 100%;
+}
+
+.book-item img {
+  width: 80px;
+  height: auto;
+  margin-right: 15px;
+}
+
+.book-title {
+  margin-bottom: 10px;
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.book-info p {
+  color: #656565;
+  font-size: 12px;
+}
+.book-status-dropdown {
+  margin-top: 36px;
+  position: relative;
+}
+
+.status-btn {
+  width: 130px;
+  border: none;
+  padding: 8px 12px;
+  background: #f3f3f3;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 12px;
+  border: 3px solid transparent;
+  outline: none;
+  transition: border 0.3s ease;
+
+  margin-left: auto;
+}
+
+.status-btn:focus {
+  border-color: #ffe5ec;
+}
+
+/* ========================================= */
 /* ✅ footer
 /* ========================================= */
 footer {

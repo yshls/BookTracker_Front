@@ -79,6 +79,12 @@ body {
     padding: 80px 50px;
 }
 
+.form-label {
+    margin-left: 8px;
+    color: black;
+    font-size: 14px;
+}
+
 .input-email {
     display: flex;
     flex-direction: column;
@@ -92,10 +98,23 @@ body {
     gap: 8px;
 }
 
-.form-label {
-    color: black;
-    font-size: 14px;
-    margin-left: 8px;
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+  
+#pwd {
+    flex: 1;
+    padding-right: 40px;
+}
+  
+.toggle-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    user-select: none; 
+    color: #FB6F92;
 }
 
 .form-control {
@@ -125,7 +144,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: 80px;
+    margin-top: 60px;
 }
 
 .login-btn {
@@ -157,7 +176,7 @@ body {
     justify-content: center; 
     align-items: center;
     gap: 10px;
-    margin-top: 8px;
+    margin-top: 12px;
 }
 
 .find-btn p, button {

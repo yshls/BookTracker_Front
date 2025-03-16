@@ -246,3 +246,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// ========================================
+// ✅ search 기능 읽고 싶어요 불러오기
+// ========================================
+document.addEventListener('DOMContentLoaded', function () {
+  const readingList = document.getElementById('reading-list'); // "읽고 싶어요" 목록 표시할 div
+
+  function fetchReadingList() {
+    axios
+      .get('http://localhost:8080/api/books/reading-list') // 백엔드 API 호출
+      .then((response) => {
+        const books = response.data; // 응답 데이터
+        displayReadingList(books);
+      })
+      .catch((error) => {
+        console.error('"읽고 싶어요" 목록 불러오기 실패:', error);
+      });
+  }
+
+  function displayReadingList(books) {
+    readingList.innerHTML = ''; // 기존 목록 초기화
+    if (books.length === 0) {
+      readingList.innerHTML = '<p>읽고 싶은 책이 없습니다.</p>';
+      return;
+    }
+
+    books.forEach((book) => {
+      const div = document.createElement('div');
+      div.classList.add('book-item');
+      div.innerHTML = `
+        <img class="book-cover" src="${book.cover}" alt="${book.title}">
+        <div class="book-info">
+          <h4 class="book-title">${book.title}</h4>
+          <p class="book-author">${book.author} · ${book.publisher}</p>
+        </div>
+      `;
+      readingList.appendChild(div);
+    });
+  }
+
+  fetchReadingList(); // 페이지 로드 시 실행
+});

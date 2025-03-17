@@ -250,25 +250,28 @@ document.addEventListener('DOMContentLoaded', () => {
 // ========================================
 // ✅ search 기능 읽고 싶어요 불러오기
 // ========================================
-document.addEventListener('DOMContentLoaded', function () {
-  const readingList = document.getElementById('reading-list'); // "읽고 싶어요" 목록 표시할 div
 
-  function fetchReadingList() {
+document.addEventListener('DOMContentLoaded', function () {
+  const readingNowList = document.getElementById('reading-now-list');
+  const readingDoneList = document.getElementById('reading-done-list');
+  const readingWantList = document.getElementById('reading-want-list');
+
+  function fetchBooksByStatus(status, targetList) {
     axios
-      .get('http://localhost:8080/api/books/reading-list') // 백엔드 API 호출
+      .get(`http://localhost:8080/api/progress/${encodeURIComponent(status)}`)
       .then((response) => {
-        const books = response.data; // 응답 데이터
-        displayReadingList(books);
+        displayBooks(response.data, targetList);
       })
       .catch((error) => {
-        console.error('"읽고 싶어요" 목록 불러오기 실패:', error);
+        console.error(`"${status}" 목록 불러오기 실패:`, error);
       });
   }
 
-  function displayReadingList(books) {
-    readingList.innerHTML = ''; // 기존 목록 초기화
-    if (books.length === 0) {
-      readingList.innerHTML = '<p>읽고 싶은 책이 없습니다.</p>';
+  function displayBooks(books, targetList) {
+    targetList.innerHTML = '';
+
+    if (!books || books.length === 0) {
+      targetList.innerHTML = '<p>해당 목록에 책이 없습니다.</p>';
       return;
     }
 
@@ -280,11 +283,27 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="book-info">
           <h4 class="book-title">${book.title}</h4>
           <p class="book-author">${book.author} · ${book.publisher}</p>
-        </div>
-      `;
-      readingList.appendChild(div);
+          <button onclick="updateBookStatus(${book.progressId}, '읽고 있어/요')">📖 읽기 시작</button>
+          <button onclick="updateBookStatus(${book.progressId}, '다 읽었어요')">✅ 다 읽음</button>
+          </div>
+          `;
+      targetList.appendChild(div);
     });
   }
 
-  fetchReadingList(); // 페이지 로드 시 실행
+  function updateBookStatus(progressId, status) {
+    axios
+      .put('http://localhost:8080/api/progress/update', { progressId, status })
+      .then(() => {
+        alert(`책 상태가 '${status}'로 변경되었습니다!`);
+        location.reload();
+      })
+      .catch((error) => {
+        console.error('상태 업데이트 실패:', error);
+      });
+  }
+
+  fetchBooksByStatus('읽고 싶어요', readingWantList);
+  fetchBooksByStatus('읽고 있어요', readingNowList);
+  fetchBooksByStatus('다 읽었어요', readingDoneList);
 });

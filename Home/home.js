@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // Chart.js 진행 바 생성
       const canvas = document.getElementById('progressChart');
       if (!canvas) {
-        console.error("⚠️ 'progressChart' 요소를 찾을 수 없습니다.");
+        console.error(" 'progressChart' 요소를 찾을 수 없습니다.");
         return;
       }
       const ctx = canvas.getContext('2d');
@@ -119,27 +119,27 @@ document.addEventListener('DOMContentLoaded', function () {
       currentBooks++;
       updateProgress();
     } else {
-      alert('🎉 목표를 이미 달성했습니다!');
+      alert('목표를 이미 달성했습니다!');
     }
   });
 
   // 독서 목표 토글 기능 (펼치기/접기)
   const toggleBtns = document.querySelectorAll('.toggle-btn');
 
-  console.log(`📌 .toggle-btn 요소 개수: ${toggleBtns.length}`);
+  console.log(`.toggle-btn 요소 개수: ${toggleBtns.length}`);
 
   toggleBtns.forEach((btn) => {
     btn.addEventListener('click', function () {
       const goalContainer = this.closest('.goal-container');
 
       if (!goalContainer) {
-        console.error("⚠️ 'goal-container'를 찾을 수 없습니다.");
+        console.error("'goal-container'를 찾을 수 없습니다.");
         return;
       }
 
       goalContainer.classList.toggle('open');
 
-      console.log(`📌 goal-container 클래스 목록: ${goalContainer.classList}`);
+      console.log(`goal-container 클래스 목록: ${goalContainer.classList}`);
     });
   });
 });
@@ -156,11 +156,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (editGoalBtn) {
     editGoalBtn.addEventListener('click', function () {
-      console.log('📌 목표 수정 아이콘 클릭됨! 모달을 엽니다.');
+      console.log('목표 수정 아이콘 클릭됨! 모달을 엽니다.');
       modal.style.display = 'flex';
     });
   } else {
-    console.error('⚠️  목표 수정 아이콘을 찾을 수 없습니다!');
+    console.error('목표 수정 아이콘을 찾을 수 없습니다!');
   }
 
   // 모달 닫기 버튼 클릭 시 닫기
@@ -224,9 +224,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const token = sessionStorage.getItem('Authorization');
   if (!token) {
-    console.warn('⚠ 로그인 필요');
-    showToast('⚠ 로그인 후 이용해주세요.');
+    console.warn('로그인 필요');
+    showToast(
+      `<i class="fa-solid fa-triangle-exclamation"></i> 먼저 로그인 해주세요.`
+    );
     return;
+  }
+
+  function updateBookCount(books, status) {
+    const headline = document.querySelector('.headline');
+
+    // 해당 상태의 책 개수 계산
+    let bookCount = books.filter((book) => book.status === status).length;
+
+    // UI 업데이트
+    headline.textContent = `${bookCount}권`;
   }
 
   // 탭 클릭 이벤트 추가
@@ -238,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // 클릭된 탭에 활성 클래스 추가
       tab.classList.add('active');
 
-      // 📌 선택된 상태에 따라 API에서 데이터 가져오기
+      // 선택된 상태에 따라 API에서 데이터 가져오기
       let status;
       switch (index) {
         case 0:
@@ -258,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
           break;
       }
 
-      // 📌 API 호출하여 해당 상태의 책 가져오기
+      // API 호출하여 해당 상태의 책 가져오기
       try {
         const response = await axios.get(
           `http://localhost:8080/api/books/user-books?status=${status}`,
@@ -268,22 +280,25 @@ document.addEventListener('DOMContentLoaded', () => {
         );
 
         const books = response.data;
-        console.log(`📚 ${status} 책 목록:`, books);
+        console.log(`${status} 책 목록:`, books);
 
-        // 📌 UI 업데이트
+        // UI 업데이트
         renderBooks(books, status);
+        updateBookCount(books, status);
       } catch (error) {
-        console.error(`❌ ${status} 책 목록 불러오기 실패:`, error);
+        console.error(`${status} 책 목록 불러오기 실패:`, error);
       }
     });
   });
 
-  // 📌 사용자 책 목록 다시 불러오는 함수
+  // 사용자 책 목록 다시 불러오는 함수
   async function fetchUserBooks() {
     const token = sessionStorage.getItem('Authorization');
     if (!token) {
-      console.warn('⚠ 로그인 필요');
-      showToast('⚠ 로그인 후 이용해주세요.');
+      console.warn('로그인 필요');
+      showToast(
+        `<i class="fa-solid fa-triangle-exclamation"></i> 먼저 로그인 해주세요.`
+      );
       return;
     }
 
@@ -296,53 +311,68 @@ document.addEventListener('DOMContentLoaded', () => {
       );
 
       const books = response.data;
-      console.log('📚 새로 불러온 책 목록:', books);
+      console.log('새로 불러온 책 목록:', books);
 
-      renderBooks(books); // ✅ 목록 다시 렌더링
+      renderBooks(books); // 목록 다시 렌더링
     } catch (error) {
-      console.error('❌ 책 목록 불러오기 실패:', error);
+      console.error('책 목록 불러오기 실패:', error);
     }
   }
 
-  // 📌 책 목록을 UI에 렌더링
+  // 책 목록을 UI에 렌더링
   function renderBooks(books) {
-    const readingList = document.getElementById('reading-now-list'); // 읽고 있어요
-    const finishedList = document.getElementById('reading-done-list'); // 다 읽었어요
-    const wantToReadList = document.getElementById('reading-want-list'); // 읽고 싶어요
+    const readingList = document.getElementById('reading-now-list'); // "읽고 있어요" 리스트
+    const finishedList = document.getElementById('reading-done-list'); // "다 읽었어요" 리스트
+    const wantToReadList = document.getElementById('reading-want-list'); // "읽고 싶어요" 리스트
+    const bookDesc = document.querySelector('.book-desc h4'); // 메시지 요소
 
-    // ✅ 기존 목록 초기화 (책이 사라지는 원인 제거)
+    // 기존 목록 초기화
     readingList.innerHTML = '';
     finishedList.innerHTML = '';
     wantToReadList.innerHTML = '';
+
+    if (books.length === 0) {
+      // 책이 없으면 메시지 표시
+      bookDesc.style.display = 'block';
+    } else {
+      // 책이 있으면 메시지 숨기기
+      bookDesc.style.display = 'none';
+    }
 
     books.forEach((book) => {
       const bookItem = document.createElement('div');
       bookItem.classList.add('book-item');
       bookItem.innerHTML = `
-      <img class="book-cover" src="${book.cover}" alt="${book.title}">
-      <div class="book-info">
-        <h4 class="book-title">${book.title}</h4>
-        <p class="book-author">${book.author} · ${book.publisher}</p>
-        <select class="status-select">
-          <option value="읽고 싶어요" ${
-            book.status === '읽고 싶어요' ? 'selected' : ''
-          }>📌 읽고 싶어요</option>
-          <option value="읽고 있어요" ${
-            book.status === '읽고 있어요' ? 'selected' : ''
-          }>📖 읽고 있어요</option>
-          <option value="다 읽었어요" ${
-            book.status === '다 읽었어요' ? 'selected' : ''
-          }>✅ 다 읽었어요</option>
-        </select>
-      </div>
-    `;
+     
+        <img class="book-cover" src="${book.cover}" alt="${book.title}">
+        <div class="book-info">
+          <h4 class="book-title">${book.title}</h4>
+          <p class="book-author">${book.author} · ${book.publisher}</p>
+          
+          <select class="status-select">
+            <option value="읽고 싶어요" ${
+              book.status === '읽고 싶어요' ? 'selected' : ''
+            }>읽고 싶어요</option>
+            <option value="읽고 있어요" ${
+              book.status === '읽고 있어요' ? 'selected' : ''
+            }>읽고 있어요</option>
+            <option value="다 읽었어요" ${
+              book.status === '다 읽었어요' ? 'selected' : ''
+            }> 다 읽었어요</option>
+          </select>
+
+
+         
+       </div>
+       
+      `;
 
       const statusSelect = bookItem.querySelector('.status-select');
       statusSelect.addEventListener('change', (event) =>
         updateBookStatus(book, event.target.value)
       );
 
-      // ✅ 상태별로 적절한 목록에 추가
+      // 상태별로 적절한 리스트에 추가
       if (book.status === '읽고 싶어요') {
         wantToReadList.appendChild(bookItem);
       } else if (book.status === '읽고 있어요') {
@@ -353,18 +383,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 📌 책 상태 변경 함수
-  // 📌 책 상태 변경 함수
+  // 책 상태 변경 함수
   async function updateBookStatus(book, newStatus) {
     const token = sessionStorage.getItem('Authorization');
     if (!token) {
-      showToast('⚠ 로그인 후 이용해주세요.');
+      showToast(
+        `<i class="fa-solid fa-triangle-exclamation"></i> 먼저 로그인 해주세요.`
+      );
       return;
     }
 
     try {
-      // ✅ 서버로 요청 보낼 데이터 확인 (book_id가 올바르게 전달되는지 확인)
-      console.log('📌 변경 요청:', {
+      // 서버로 요청 보낼 데이터 확인 (book_id가 올바르게 전달되는지 확인)
+      console.log('변경 요청:', {
         book_id: book.book_id,
         status: newStatus,
       });
@@ -372,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
       await axios.put(
         'http://localhost:8080/api/books/update-status',
         {
-          book_id: book.book_id, // ✅ book_id → book_id로 변경
+          book_id: book.book_id, //
           status: newStatus,
         },
         {
@@ -380,13 +411,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       );
 
-      showToast(`📚 ${book.title} 상태가 '${newStatus}'로 변경되었습니다.`);
+      showToast(`${book.title} 상태가 '${newStatus}'로 변경되었습니다.`);
 
-      // ✅ 변경 후 목록 다시 불러오기
+      // 변경 후 목록 다시 불러오기
       fetchUserBooks(); // 상태 업데이트 후 전체 목록 다시 렌더링
     } catch (error) {
-      console.error('❌ 책 상태 변경 실패:', error);
-      showToast('❌ 상태 변경 중 오류 발생');
+      console.error(' 책 상태 변경 실패:', error);
+      showToast(' 상태 변경 중 오류 발생');
     }
   }
 });
@@ -394,12 +425,12 @@ document.addEventListener('DOMContentLoaded', () => {
 function moveBookToNewStatus(book, newStatus) {
   // 기존 목록에서 제거
   document.querySelectorAll('.book-item').forEach((item) => {
-    if (item.querySelector('.book-title').innerText === book.title) {
+    if (item.querySelector('.book-title').innerHTML === book.title) {
       item.remove();
     }
   });
 
-  // ✅ 상태 변경 후 새로운 목록에 추가
+  // 상태 변경 후 새로운 목록에 추가
   const bookItem = document.createElement('div');
   bookItem.classList.add('book-item');
   bookItem.innerHTML = `
@@ -410,13 +441,13 @@ function moveBookToNewStatus(book, newStatus) {
       <select class="status-select">
         <option value="읽고 싶어요" ${
           newStatus === '읽고 싶어요' ? 'selected' : ''
-        }>📌 읽고 싶어요</option>
+        }> 읽고 싶어요</option>
         <option value="읽고 있어요" ${
           newStatus === '읽고 있어요' ? 'selected' : ''
-        }>📖 읽고 있어요</option>
+        }> 읽고 있어요</option>
         <option value="다 읽었어요" ${
           newStatus === '다 읽었어요' ? 'selected' : ''
-        }>✅ 다 읽었어요</option>
+        }> 다 읽었어요</option>
       </select>
     </div>
   `;
@@ -427,7 +458,7 @@ function moveBookToNewStatus(book, newStatus) {
     updateBookStatus(book, event.target.value)
   );
 
-  // ✅ 새로운 상태에 따라 적절한 리스트에 추가
+  // 새로운 상태에 따라 적절한 리스트에 추가
   if (newStatus === '읽고 싶어요') {
     document.getElementById('reading-want-list').appendChild(bookItem);
   } else if (newStatus === '읽고 있어요') {
@@ -436,3 +467,38 @@ function moveBookToNewStatus(book, newStatus) {
     document.getElementById('reading-done-list').appendChild(bookItem);
   }
 }
+document.addEventListener('DOMContentLoaded', function () {
+  const scrollContainer = document.getElementById('scrollContainer');
+  // ✅ id="addBtn" → getElementById('addBtn') or querySelector('#addBtn')
+  const addBtn = document.getElementById('addBtn');
+
+  let lastScrollTop = 0;
+
+  scrollContainer.addEventListener('scroll', function () {
+    const st = scrollContainer.scrollTop;
+    if (st > lastScrollTop) {
+      addBtn.style.opacity = '0';
+    } else {
+      addBtn.style.opacity = '1';
+    }
+    lastScrollTop = st;
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const scrollerCotainer = document.getElementById('scrollerCotainer');
+  // ✅ id="addBtn" → getElementById('addBtn') or querySelector('#addBtn')
+  const addBtn = document.getElementById('addBtn');
+
+  let lastScrollTop = 0;
+
+  scrollerCotainer.addEventListener('scroll', function () {
+    const st = scrollerCotainer.scrollTop;
+    if (st > lastScrollTop) {
+      addBtn.style.opacity = '0';
+    } else {
+      addBtn.style.opacity = '1';
+    }
+    lastScrollTop = st;
+  });
+});

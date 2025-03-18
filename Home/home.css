@@ -36,6 +36,7 @@ body {
   width: 600px;
   min-width: 100px;
   transition: width 0.3s ease-in-out;
+  box-shadow: 2px 4px 6px rgba(54, 45, 45, 0.9);
 }
 
 #title {
@@ -44,15 +45,15 @@ body {
 
 /* 메인 콘텐츠 (가운데 창) */
 .main-content {
+  position: relative;
   width: 750px; /* 고정된 폭 */
-  min-width: 750px;
-  max-width: 750px; /* ✅ 크기 변화 방지 */
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto; /* 자동으로 가운데 정렬 */
   height: 100vh;
+  overflow-y: auto;
 }
 
 /* ========================================= */
@@ -71,16 +72,16 @@ h1 {
 }
 
 /* ========================================= */
-/* ✅ 가입하기 및 로그인
+/* ✅ 가입하기 및 로그인 / 로그인 -> 로그아웃
 /* ========================================= */
 .auth-links {
   list-style: none;
   display: flex;
-  gap: 15px;
+  gap: 10px;
   background-color: #fb6f92;
   padding: 10px;
-  border-radius: 12px;
   transition: background 0.3s;
+  border-radius: 12px;
   margin: 0 20px 0 0;
 }
 
@@ -106,6 +107,10 @@ h1 {
   width: 100%;
 }
 
+#slash {
+  color: #fff;
+}
+
 /* ========================================= */
 /* ✅ 프로필 및 독서 목표
 /* ========================================= */
@@ -117,7 +122,6 @@ h1 {
 .user-area {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 16px;
 }
 
 .user-img {
@@ -162,7 +166,7 @@ h1 {
   width: 100%;
   background-color: #ffe5ec;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 10px;
   transition: padding 0.3s ease-in-out;
 }
 
@@ -321,7 +325,7 @@ canvas {
   position: relative;
 }
 .menu-area {
-  width: 750px;
+  width: 100%;
   padding: 0px 20px;
 }
 .tab-menu {
@@ -412,13 +416,13 @@ canvas {
   display: inline-block;
   width: 140px;
   border: 2px solid #d1d1d1;
-  border-radius: 8px; /* 기본적으로 라운드 처리 */
+  border-radius: 10px; /* 기본적으로 라운드 처리 */
   transition: border-radius 0.3s ease;
   box-sizing: border-box;
 }
 
 .dropdown.open {
-  border-radius: 8px 8px 0 0; /* 펼쳐질 때 아래쪽을 직각 */
+  border-radius: 10px;
 }
 
 .dropdown-toggle {
@@ -428,7 +432,7 @@ canvas {
   cursor: pointer;
   width: 100%;
   box-sizing: border-box;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 2px 12px;
 }
 
@@ -454,11 +458,12 @@ canvas {
   position: absolute;
   top: 100%;
   width: 100%;
-  background: white;
+  background: #fff;
   border: 2px solid #d1d1d1;
-  border-top: none;
-  border-radius: 0 0 8px 8px;
+
+  border-radius: 10px;
   list-style: none;
+  margin-top: 4px;
 }
 
 .dropdown.open .dropdown-list {
@@ -476,7 +481,8 @@ canvas {
 }
 
 .dropdown-item:hover {
-  background: #d1d1d1;
+  background: #ffe5ec;
+  border-radius: 10px;
 }
 
 /* ========================================= */
@@ -488,7 +494,7 @@ canvas {
   align-items: center; /* 가운데 정렬 */
   justify-content: center;
   text-align: center;
-  margin-top: 50px; /* 위쪽 여백 조정 */
+
   color: #656565; /* 텍스트 색상 */
   font-size: 18px; /* 글자 크기 */
   font-weight: 600; /* 글자 굵기 */
@@ -506,8 +512,10 @@ canvas {
 /* ========================================= */
 /* ✅ 추가버튼
 /* ========================================= */
+
 .add-btn {
   position: absolute;
+
   bottom: 20px;
   right: 20px;
   background-color: #ff8fab;
@@ -515,12 +523,18 @@ canvas {
   font-size: 24px;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  border: none;
+  border-radius: 10px;
   cursor: pointer;
+
+  text-decoration: none;
+
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.add-btn a {
+.add-btn i {
   color: #fff;
   text-decoration: none;
 }
@@ -536,10 +550,9 @@ canvas {
 .book-item {
   font-size: 14px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
   padding: 12px;
-  width: 100%;
+  width: 710px;
 }
 
 .book-item img {
@@ -553,6 +566,7 @@ canvas {
 }
 
 .book-info {
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -561,12 +575,10 @@ canvas {
   color: #656565;
   font-size: 12px;
 }
-.book-status-dropdown {
-  margin-top: 36px;
-  position: relative;
-}
 
-.status-btn {
+.status-select {
+  margin-top: 70px;
+  position: relative;
   width: 130px;
   border: none;
   padding: 8px 12px;
@@ -575,7 +587,7 @@ canvas {
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
   font-size: 12px;
   border: 3px solid transparent;
   outline: none;
@@ -584,7 +596,7 @@ canvas {
   margin-left: auto;
 }
 
-.status-btn:focus {
+.status-select:focus {
   border-color: #ffe5ec;
 }
 
@@ -624,6 +636,15 @@ footer {
   max-width: 750px; /* ✅ 크기 변화 방지 */
   font-size: 12px;
   color: #999999;
+}
+footer a {
+  text-decoration-line: none;
+  color: #999999;
+}
+
+footer a:hover {
+  text-decoration-line: none;
+  color: #fb6f92;
 }
 
 /* ========================================= */

@@ -17,7 +17,7 @@
       <div class="sidebar"></div>
 
       <!-- 메인 콘텐츠 -->
-      <main class="main-content">
+      <main class="main-content" id="scrollerCotainer">
         <!-- 네비게이션 -->
         <nav class="title">
           <h1>독서노트</h1>
@@ -31,7 +31,7 @@
         <div id="user">
           <div class="user-area">
             <div class="user-left">
-              <img src="./test-img.png" alt="프로필사진" class="user-img" />
+             
               <h3 id="userName">
                 <span>유레카</span>
               </h3>
@@ -64,37 +64,25 @@
               <div class="progress-container">
                 <canvas id="progressChart"></canvas>
             </div>
-            <button id="increase-progress" class="goal-button"><i class="fa-solid fa-book"></i>1권 완독</button>
+            <button id="increase-progress" class="goal-button"><i1권 class="fa-solid fa-book"></i1권> 완독</button>
         </div>
           </div>
           
         <!-- 읽고있어요 공간 및 책 추가란 -->
-        <section class="content-area">
+        <section class="content-area" >
           <div class="menu-area">
             <ul class="tab-menu">
               <li id="readNow" class="menu" ><span>읽고 있어요</span></li>
               <li id="readDone"class="menu"><span>다 읽었어요</span></li>
               <li id="readWant" class="menu"><span>읽고 싶어요</span></li>
             </ul>
-          </div>
-
-          <!-- <div class="search-area">
-            <i class="fa-solid fa-magnifying-glass search-item"></i>
-            <input type="text" id="searchInput" placeholder="도서 제목, 작가 이름 검색" />
-          
-            <button id="clearBtn" aria-label="Clear Current Search">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div> -->
-          
-          <div id="resultArea">
-            
-          </div>
-          
+          </div>          
 
           <div class="list-header display-flex">
             <h3 class="headline">0권</h3>
+            
             <div class="dropdown">
+              
               <div class="dropdown-toggle">
                 <input
                   type="text"
@@ -103,16 +91,21 @@
                   value="최근 읽은 순"
                 />
                 <i class="fa-solid fa-caret-down"></i>
+                
               </div>
+              
               <ul class="dropdown-list">
                 <li class="dropdown-item">최근 읽은 순</li>
                 <li class="dropdown-item">등록 순</li>
                 <li class="dropdown-item">가나다 순</li>
               </ul>
+              
             </div>
+            <a href="../Search/search.html" class="add-btn" id="addBtn"><i class="fa-solid fa-plus"></i></a>
           </div>
 
           <div class="book-empty">
+            
             <div class="book-desc">
               <h4>
                 지금 읽고 있는 책을 등록해보세요<i
@@ -120,22 +113,22 @@
                 ></i>
               </h4>
 
-              <section id="reading-section">
+              <div id="reading-section">
                 <div id="reading-now-list" class="book-list"></div>
-              </section>
+              </div>
 
-              <section id="completed-section">
+              <div id="completed-section">
                
                 <div id="reading-done-list" class="book-list"></div>
-              </section>
+              </div>
 
-
-            <section id="wishlist-section">
+            <div id="wishlist-section">
           
             <div id="reading-want-list" class="book-list"></div>
-            </section>
+            </div>
             
-      <button class="add-btn"><a href="../Search/search.html">+</a></button>
+            
+     
           </div>
         </section>
       </main>
@@ -160,7 +153,10 @@
       </div>
 
       <footer>
-        <p>Copyright © 2025 yshls, H-JuKyung All Rights Reserved.</p>
+        <p>Copyright © 2025 
+          <a href="https://github.com/yshls">yshls</a>, 
+          <a href="https://github.com/H-JuKyung">H-JuKyung</a>
+           All Rights Reserved.</p>
       </footer>
 
       <!-- 오른쪽 사이드바 -->

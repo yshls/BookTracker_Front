@@ -218,73 +218,221 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', () => {
   const tabs = document.querySelectorAll('.menu'); // 탭 요소들 선택
   const bookDesc = document.querySelector('.book-desc h4'); // 배경 글자 변경할 요소 선택
+  const readingList = document.getElementById('reading-now-list'); // "읽고 있어요" 리스트
+  const finishedList = document.getElementById('reading-done-list'); // "다 읽었어요" 리스트
+  const wantToReadList = document.getElementById('reading-want-list'); // "읽고 싶어요" 리스트
 
-  // 각 탭 클릭 시 이벤트 추가
+  const token = sessionStorage.getItem('Authorization');
+  if (!token) {
+    console.warn('⚠ 로그인 필요');
+    showToast('⚠ 로그인 후 이용해주세요.');
+    return;
+  }
+
+  // 탭 클릭 이벤트 추가
   tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => {
+    tab.addEventListener('click', async () => {
       // 기존의 선택된 스타일 제거
       tabs.forEach((t) => t.classList.remove('active'));
 
       // 클릭된 탭에 활성 클래스 추가
       tab.classList.add('active');
 
-      // 탭 인덱스에 따라 문구 변경
+      // 📌 선택된 상태에 따라 API에서 데이터 가져오기
+      let status;
       switch (index) {
         case 0:
+          status = '읽고 있어요';
           bookDesc.innerHTML =
             '지금 읽고 있는 책을 등록해보세요<i class="fa-regular fa-face-smile"></i>';
           break;
         case 1:
+          status = '다 읽었어요';
           bookDesc.innerHTML =
             '다 읽은 책을 등록해보세요<i class="fa-regular fa-face-smile"></i>';
           break;
         case 2:
+          status = '읽고 싶어요';
           bookDesc.innerHTML =
             '읽고 싶은 책을 등록해보세요<i class="fa-regular fa-face-smile"></i>';
           break;
       }
+
+      // 📌 API 호출하여 해당 상태의 책 가져오기
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/api/books/user-books?status=${status}`,
+          {
+            headers: { Authorization: token },
+          }
+        );
+
+        const books = response.data;
+        console.log(`📚 ${status} 책 목록:`, books);
+
+        // 📌 UI 업데이트
+        renderBooks(books, status);
+      } catch (error) {
+        console.error(`❌ ${status} 책 목록 불러오기 실패:`, error);
+      }
     });
   });
-});
 
-// ========================================
-// ✅ search 기능 읽고 싶어요 불러오기
-// ========================================
-document.addEventListener('DOMContentLoaded', function () {
-  const readingList = document.getElementById('reading-list'); // "읽고 싶어요" 목록 표시할 div
-
-  function fetchReadingList() {
-    axios
-      .get('http://localhost:8080/api/books/reading-list') // 백엔드 API 호출
-      .then((response) => {
-        const books = response.data; // 응답 데이터
-        displayReadingList(books);
-      })
-      .catch((error) => {
-        console.error('"읽고 싶어요" 목록 불러오기 실패:', error);
-      });
-  }
-
-  function displayReadingList(books) {
-    readingList.innerHTML = ''; // 기존 목록 초기화
-    if (books.length === 0) {
-      readingList.innerHTML = '<p>읽고 싶은 책이 없습니다.</p>';
+  // 📌 사용자 책 목록 다시 불러오는 함수
+  async function fetchUserBooks() {
+    const token = sessionStorage.getItem('Authorization');
+    if (!token) {
+      console.warn('⚠ 로그인 필요');
+      showToast('⚠ 로그인 후 이용해주세요.');
       return;
     }
 
+    try {
+      const response = await axios.get(
+        'http://localhost:8080/api/books/user-books',
+        {
+          headers: { Authorization: token },
+        }
+      );
+
+      const books = response.data;
+      console.log('📚 새로 불러온 책 목록:', books);
+
+      renderBooks(books); // ✅ 목록 다시 렌더링
+    } catch (error) {
+      console.error('❌ 책 목록 불러오기 실패:', error);
+    }
+  }
+
+  // 📌 책 목록을 UI에 렌더링
+  function renderBooks(books) {
+    const readingList = document.getElementById('reading-now-list'); // 읽고 있어요
+    const finishedList = document.getElementById('reading-done-list'); // 다 읽었어요
+    const wantToReadList = document.getElementById('reading-want-list'); // 읽고 싶어요
+
+    // ✅ 기존 목록 초기화 (책이 사라지는 원인 제거)
+    readingList.innerHTML = '';
+    finishedList.innerHTML = '';
+    wantToReadList.innerHTML = '';
+
     books.forEach((book) => {
-      const div = document.createElement('div');
-      div.classList.add('book-item');
-      div.innerHTML = `
-        <img class="book-cover" src="${book.cover}" alt="${book.title}">
-        <div class="book-info">
-          <h4 class="book-title">${book.title}</h4>
-          <p class="book-author">${book.author} · ${book.publisher}</p>
-        </div>
-      `;
-      readingList.appendChild(div);
+      const bookItem = document.createElement('div');
+      bookItem.classList.add('book-item');
+      bookItem.innerHTML = `
+      <img class="book-cover" src="${book.cover}" alt="${book.title}">
+      <div class="book-info">
+        <h4 class="book-title">${book.title}</h4>
+        <p class="book-author">${book.author} · ${book.publisher}</p>
+        <select class="status-select">
+          <option value="읽고 싶어요" ${
+            book.status === '읽고 싶어요' ? 'selected' : ''
+          }>📌 읽고 싶어요</option>
+          <option value="읽고 있어요" ${
+            book.status === '읽고 있어요' ? 'selected' : ''
+          }>📖 읽고 있어요</option>
+          <option value="다 읽었어요" ${
+            book.status === '다 읽었어요' ? 'selected' : ''
+          }>✅ 다 읽었어요</option>
+        </select>
+      </div>
+    `;
+
+      const statusSelect = bookItem.querySelector('.status-select');
+      statusSelect.addEventListener('change', (event) =>
+        updateBookStatus(book, event.target.value)
+      );
+
+      // ✅ 상태별로 적절한 목록에 추가
+      if (book.status === '읽고 싶어요') {
+        wantToReadList.appendChild(bookItem);
+      } else if (book.status === '읽고 있어요') {
+        readingList.appendChild(bookItem);
+      } else if (book.status === '다 읽었어요') {
+        finishedList.appendChild(bookItem);
+      }
     });
   }
 
-  fetchReadingList(); // 페이지 로드 시 실행
+  // 📌 책 상태 변경 함수
+  // 📌 책 상태 변경 함수
+  async function updateBookStatus(book, newStatus) {
+    const token = sessionStorage.getItem('Authorization');
+    if (!token) {
+      showToast('⚠ 로그인 후 이용해주세요.');
+      return;
+    }
+
+    try {
+      // ✅ 서버로 요청 보낼 데이터 확인 (book_id가 올바르게 전달되는지 확인)
+      console.log('📌 변경 요청:', {
+        book_id: book.book_id,
+        status: newStatus,
+      });
+
+      await axios.put(
+        'http://localhost:8080/api/books/update-status',
+        {
+          book_id: book.book_id, // ✅ book_id → book_id로 변경
+          status: newStatus,
+        },
+        {
+          headers: { Authorization: token },
+        }
+      );
+
+      showToast(`📚 ${book.title} 상태가 '${newStatus}'로 변경되었습니다.`);
+
+      // ✅ 변경 후 목록 다시 불러오기
+      fetchUserBooks(); // 상태 업데이트 후 전체 목록 다시 렌더링
+    } catch (error) {
+      console.error('❌ 책 상태 변경 실패:', error);
+      showToast('❌ 상태 변경 중 오류 발생');
+    }
+  }
 });
+
+function moveBookToNewStatus(book, newStatus) {
+  // 기존 목록에서 제거
+  document.querySelectorAll('.book-item').forEach((item) => {
+    if (item.querySelector('.book-title').innerText === book.title) {
+      item.remove();
+    }
+  });
+
+  // ✅ 상태 변경 후 새로운 목록에 추가
+  const bookItem = document.createElement('div');
+  bookItem.classList.add('book-item');
+  bookItem.innerHTML = `
+    <img class="book-cover" src="${book.cover}" alt="${book.title}">
+    <div class="book-info">
+      <h4 class="book-title">${book.title}</h4>
+      <p class="book-author">${book.author} · ${book.publisher}</p>
+      <select class="status-select">
+        <option value="읽고 싶어요" ${
+          newStatus === '읽고 싶어요' ? 'selected' : ''
+        }>📌 읽고 싶어요</option>
+        <option value="읽고 있어요" ${
+          newStatus === '읽고 있어요' ? 'selected' : ''
+        }>📖 읽고 있어요</option>
+        <option value="다 읽었어요" ${
+          newStatus === '다 읽었어요' ? 'selected' : ''
+        }>✅ 다 읽었어요</option>
+      </select>
+    </div>
+  `;
+
+  // 상태 선택 시 다시 변경 가능하도록 이벤트 추가
+  const statusSelect = bookItem.querySelector('.status-select');
+  statusSelect.addEventListener('change', (event) =>
+    updateBookStatus(book, event.target.value)
+  );
+
+  // ✅ 새로운 상태에 따라 적절한 리스트에 추가
+  if (newStatus === '읽고 싶어요') {
+    document.getElementById('reading-want-list').appendChild(bookItem);
+  } else if (newStatus === '읽고 있어요') {
+    document.getElementById('reading-now-list').appendChild(bookItem);
+  } else if (newStatus === '다 읽었어요') {
+    document.getElementById('reading-done-list').appendChild(bookItem);
+  }
+}

@@ -1,3 +1,6 @@
+/* ========================================= */
+/* ✅ 공통 코드
+/* ========================================= */
 @font-face {
     font-family: 'Pretendard-Regular';
     src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -15,8 +18,8 @@
 
 /* 기본 스타일 */
 body {
-    background-color: #d1d1d1;
     font-family: 'Pretendard-Regular';
+    background-color: #d1d1d1;
 }
 
 /* 전체 레이아웃 */
@@ -47,7 +50,9 @@ body {
     align-items: center;
 }
 
-/* 헤더 */
+/* ========================================= */
+/* ✅ Header
+/* ========================================= */
 .header {
     position: relative;
     width: 100%;
@@ -69,7 +74,9 @@ body {
     text-align: center;
 }
 
-/* 섹션 */
+/* ========================================= */
+/* ✅ 입력 Form
+/* ========================================= */
 .section {
     border-radius: 15px;
     background: rgba(255, 255, 255, 0.85);
@@ -139,7 +146,9 @@ body {
     opacity: 1;
 }
 
-
+/* ========================================= */
+/* ✅ Button
+/* ========================================= */
 .btn {
     display: flex;
     flex-direction: column;
@@ -186,20 +195,9 @@ body {
     font-weight: 300;
 }
 
-/* 푸터 */
-footer {
-    background-color: #f8f8f8;
-    text-align: center;
-    padding: 10px 0;
-    margin-top: auto; 
-    width: 750px;  
-    min-width: 750px;
-    max-width: 750px;  
-    font-size: 12px;
-    color: #999999;
-}
-
-/* 모달 */
+/* ========================================= */
+/* ✅ Modal
+/* ========================================= */
 .modal-bg {
     position: fixed;
     top: 0; left: 0;
@@ -234,3 +232,47 @@ footer {
     background: #FB6F92;
     color: #FFFFFF;
 }
+
+/* ========================================= */
+/* ✅ footer
+/* ========================================= */
+
+footer {
+    background-color: #f8f8f8;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto; /* 화면 하단으로 이동 */
+    width: 750px; /* 고정된 폭 */
+    min-width: 750px;
+    max-width: 750px; /* ✅ 크기 변화 방지 */
+    font-size: 12px;
+    color: #999999;
+  }
+  
+/* ========================================= */
+/* ✅ 미디어 쿼리리
+/* ========================================= */
+@media (max-width: 1200px) {
+    .sidebar {
+      width: 200px; /* 화면이 작아질 때 사이드바 줄이기 */
+    }
+}
+  
+@media (max-width: 900px) {
+    .sidebar {
+      width: 150px;
+    }
+}
+  
+@media (max-width: 700px) {
+    .sidebar {
+      width: 100px;
+    }
+}
+  
+@media (max-width: 500px) {
+    .sidebar {
+      display: none; /* 화면이 너무 작으면 사이드바 없애기 */
+    }
+}
+  

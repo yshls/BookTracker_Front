@@ -204,6 +204,29 @@ h1 {
 }
 
 /* ========================================= */
+/* ✅ 토스트 메시지 스타일 추가
+/* ========================================= */
+
+.toast-message {
+  position: fixed;
+  width: 710px;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(15, 15, 15, 0.502);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 1000;
+}
+
+.toast-message.fade-out {
+  opacity: 0;
+}
+
+/* ========================================= */
 /* ✅ footer
 /* ========================================= */
 

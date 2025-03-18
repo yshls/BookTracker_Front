@@ -502,3 +502,65 @@ document.addEventListener('DOMContentLoaded', function () {
     lastScrollTop = st;
   });
 });
+
+// ========================================
+// ✅ 로그인한 사용자 닉네임 정보 표시
+// ========================================
+const nickname = sessionStorage.getItem('nickname');
+if (nickname != null) {
+  document.getElementById('userName').textContent = nickname + '님';
+} else {
+  document.getElementById('userName').textContent =
+    '💢 로그인 후 이용해주세요.';
+}
+
+// ========================================
+// ✅ 로그인 상태 확인 후 UI 변경
+// ========================================
+document.addEventListener('DOMContentLoaded', function () {
+  const authLinks = document.getElementById('authLinks');
+  const nickname = sessionStorage.getItem('nickname');
+
+  if (nickname) {
+    // ✅ 로그인 상태면 로그아웃 버튼만 보이도록 변경
+    authLinks.innerHTML = `<li><a href="#" id="logoutBtn">Logout</a></li>`;
+    document.getElementById('logoutBtn').addEventListener('click', logout);
+  } else {
+    // ✅ 로그아웃 상태면 로그인/회원가입 버튼 표시
+    authLinks.innerHTML = `
+          <li><a href="../SignUp/signup.html">SignUp</a></li>
+          <p id="slash">|</p>
+          <li><a href="../Login/login.html">Login</a></li>
+      `;
+  }
+});
+
+// ========================================
+// ✅ 로그아웃 함수 -> 로그인 화면으로 이동
+// ========================================
+async function logout() {
+  const token = sessionStorage.getItem('Authorization');
+
+  if (!token) {
+    sessionStorage.clear();
+    window.location.href = '../Login/login.html';
+    return;
+  }
+
+  try {
+    // ✅ 백엔드에 로그아웃 요청
+    await axios.post(
+      'http://localhost:8080/logout',
+      {},
+      {
+        headers: { Authorization: token },
+      }
+    );
+  } catch (error) {
+    console.error('❌ 로그아웃 실패:', error);
+  }
+
+  // ✅ 클라이언트의 sessionStorage 삭제 후 로그인 페이지로 이동
+  sessionStorage.clear();
+  window.location.href = '../Login/login.html';
+}

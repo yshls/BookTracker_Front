@@ -71,16 +71,16 @@ h1 {
 }
 
 /* ========================================= */
-/* ✅ 가입하기 및 로그인
+/* ✅ 가입하기 및 로그인 / 로그인 -> 로그아웃
 /* ========================================= */
 .auth-links {
   list-style: none;
   display: flex;
-  gap: 15px;
+  gap: 10px;
   background-color: #fb6f92;
   padding: 10px;
-  border-radius: 12px;
   transition: background 0.3s;
+  border-radius: 12px;
   margin: 0 20px 0 0;
 }
 
@@ -104,6 +104,10 @@ h1 {
 
 .auth-links li a:hover::after {
   width: 100%;
+}
+
+#slash {
+  color: #fff;
 }
 
 /* ========================================= */

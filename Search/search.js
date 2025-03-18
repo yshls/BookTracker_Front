@@ -27,11 +27,11 @@ function searchBooks(keyword) {
       )}`
     )
     .then((response) => {
-      console.log(response.data); // 응답 확인을 큰솔에 출력력
-      renderSearchResults(response.data); // 검색 결과를 화면에 반응응
+      console.log(response.data); // 응답 확인을 큰솔에 출력
+      renderSearchResults(response.data); // 검색 결과를 화면에 반응
     })
     .catch((error) => {
-      console.error('API 요청 중 에러 발생:', error); // 에러메시지지
+      console.error('API 요청 중 에러 발생:', error); // 에러메시지
       resultArea.innerHTML = '검색 중 오류가 발생했습니다.';
     });
 }
@@ -63,7 +63,7 @@ function renderSearchResults(data) {
       const statusBtn = div.querySelector('.status-btn');
 
       statusBtn.addEventListener('click', () => {
-        const token = sessionStorage.getItem('Authorization'); //사용자가 로그인했는지를 확인하는 거, 그래서 토큰 가져옴옴
+        const token = sessionStorage.getItem('Authorization'); //사용자가 로그인했는지를 확인하는 거, 그래서 토큰 가져옴
 
         if (!token) {
           showToast(

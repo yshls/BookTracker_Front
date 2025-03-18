@@ -36,6 +36,7 @@ body {
   width: 600px;
   min-width: 100px;
   transition: width 0.3s ease-in-out;
+  box-shadow: 2px 4px 6px rgba(54, 45, 45, 0.9);
 }
 
 #title {
@@ -71,16 +72,16 @@ h1 {
 }
 
 /* ========================================= */
-/* ✅ 가입하기 및 로그인
+/* ✅ 가입하기 및 로그인 / 로그인 -> 로그아웃
 /* ========================================= */
 .auth-links {
   list-style: none;
   display: flex;
-  gap: 15px;
+  gap: 10px;
   background-color: #fb6f92;
   padding: 10px;
-  border-radius: 12px;
   transition: background 0.3s;
+  border-radius: 12px;
   margin: 0 20px 0 0;
 }
 
@@ -104,6 +105,10 @@ h1 {
 
 .auth-links li a:hover::after {
   width: 100%;
+}
+
+#slash {
+  color: #fff;
 }
 
 /* ========================================= */
@@ -508,7 +513,6 @@ canvas {
 /* ✅ 추가버튼
 /* ========================================= */
 
-/* 야매로 위치 고정시킴.. 이 방법은 도저히 아닌듯 그렇지만.. 일단.. 반응형으로만 안한다면.. */
 .add-btn {
   position: absolute;
 

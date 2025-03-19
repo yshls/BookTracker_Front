@@ -506,32 +506,36 @@ document.addEventListener('DOMContentLoaded', function () {
 // ========================================
 // ✅ 로그인한 사용자 닉네임 정보 표시
 // ========================================
-const nickname = sessionStorage.getItem('nickname');
-if (nickname != null) {
-  document.getElementById('userName').textContent = nickname + '님';
-} else {
-  document.getElementById('userName').textContent =
-    '💢 로그인 후 이용해주세요.';
-}
+// const nickname = sessionStorage.getItem('nickname');
+// if (nickname != null) {
+//   document.getElementById('userName').textContent = nickname + '님';
+// } else {
+//   document.getElementById('userName').textContent =
+//     '💢 로그인 후 이용해주세요.';
+// }
 
 // ========================================
 // ✅ 로그인 상태 확인 후 UI 변경
 // ========================================
 document.addEventListener('DOMContentLoaded', function () {
-  const authLinks = document.getElementById('authLinks');
-  const nickname = sessionStorage.getItem('nickname');
+  const authLinks = document.getElementById("authLinks");
+  const userName = document.getElementById("userName");
+  const token = sessionStorage.getItem("Authorization");
+  const nickname = sessionStorage.getItem("nickname");
 
-  if (nickname) {
-    // ✅ 로그인 상태면 로그아웃 버튼만 보이도록 변경
+  if (token && nickname) {
+    // ✅ 로그인 상태
+    userName.textContent = nickname + "님";
     authLinks.innerHTML = `<li><a href="#" id="logoutBtn">Logout</a></li>`;
-    document.getElementById('logoutBtn').addEventListener('click', logout);
+    document.getElementById("logoutBtn").addEventListener("click", logout);
   } else {
-    // ✅ 로그아웃 상태면 로그인/회원가입 버튼 표시
+    // ✅ 로그아웃 상태 (자동 로그아웃 후에도 이 상태로 보이게 됨)
+    userName.textContent = "💢 로그인 후 이용해주세요.";
     authLinks.innerHTML = `
-          <li><a href="../SignUp/signup.html">SignUp</a></li>
-          <p id="slash">|</p>
-          <li><a href="../Login/login.html">Login</a></li>
-      `;
+      <li><a href="../SignUp/signup.html">SignUp</a></li>
+      <p id="slash">|</p>
+      <li><a href="../Login/login.html">Login</a></li>
+    `;
   }
 });
 
@@ -563,4 +567,63 @@ async function logout() {
   // ✅ 클라이언트의 sessionStorage 삭제 후 로그인 페이지로 이동
   sessionStorage.clear();
   window.location.href = '../Login/login.html';
+}
+
+// ✅ `setInterval`의 ID를 저장할 변수
+let loginCheckInterval = setInterval(checkLoginStatus, 60000);
+
+// ===========================================
+// ✅ 로그아웃 상태 확인 함수 -> 모달창 띄우기
+// ===========================================
+async function checkLoginStatus() {
+  const token = sessionStorage.getItem("Authorization");
+
+  if (!token) return; // 토큰이 없으면 그냥 return (로그인 안 된 상태)
+
+  try {
+    const response = await axios.get("http://localhost:8080/checkToken", {
+      headers: { Authorization: token },
+    });
+
+    if (response.data.expired === "true") {
+      clearInterval(loginCheckInterval); // ✅ 세션 만료 시 `setInterval` 중지
+      showLogoutModal(); // ✅ 로그아웃 모달 띄우기
+    }
+  } catch (error) {
+      console.error("❌ 로그인 상태 확인 오류:", error);
+  }
+}
+
+// ===========================================
+// ✅ 로그아웃 모달 띄우기
+// ===========================================
+function showLogoutModal() {
+  const existingModal = document.getElementById("logoutModal");
+  if (existingModal) return; // 이미 모달이 있다면 추가 생성 X
+
+  const modal = document.createElement("div");
+  modal.id = "logoutModal";
+  modal.classList.add("modal-bg");
+  modal.innerHTML = `
+      <div class="modal-box">
+          <p>❌ 세션이 만료되었습니다. ❌<hr>계속하려면 다시 로그인해 주세요.</p>
+          <button id="logoutNoBtn" class="btn-no">No</button>
+          <button id="logoutYesBtn" class="btn-yes">Yes</button>
+      </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  // ✅ "네(Yes)" 버튼 클릭 시 로그인 페이지로 이동
+  document.getElementById("logoutYesBtn").addEventListener("click", function () {
+    sessionStorage.clear(); // ✅ 세션스토리지 삭제
+    window.location.href = "../Login/login.html"; // 로그인 페이지로 이동
+  });
+
+  // ✅ "아니요(No)" 버튼 클릭 시 모달만 닫고 홈 화면 리로드 (로그아웃된 상태)
+  document.getElementById("logoutNoBtn").addEventListener("click", function () {
+    sessionStorage.clear(); // ✅ 세션스토리지 삭제
+    modal.remove(); // 모달 제거
+    location.reload(); // 홈 화면 리로드
+  });
 }

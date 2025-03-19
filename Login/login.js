@@ -21,9 +21,9 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
       axios.defaults.headers.common["Authorization"] = token;
 
       // ✅ 로그인 성공 모달 표시
-      okModal("로그인이 완료되었습니다!");
+      okModal("로그인이 완료되었습니다 ❗");
     } else {
-      failModal("❌ email이나 password를 다시 입력해주세요. ❌");
+      failModal("❌ email 또는 password ❌<hr>다시 입력해주세요.");
     }
   } catch (error) {
     console.error("❌ 로그인 오류 :<br>", error);

@@ -9,7 +9,7 @@ document.getElementById('signupBtn').addEventListener("click", async () => {
   const data = {email, pwd, nickname};
 
   if (!isNicknameChecked) {
-    failModal("❌ 닉네임 중복 확인을 해주세요! ❌");
+    failModal("닉네임 중복 확인을 해주세요 ❗");
     return;
   }
 
@@ -17,16 +17,16 @@ document.getElementById('signupBtn').addEventListener("click", async () => {
     const response = await axios.post("http://localhost:8080/insertUser" , data);
 
     if (response.data.msg === "ok") {
-      okModal("✅회원가입이 완료되었습니다!✅<hr><br>바로 로그인하러 가실까요?");
+      okModal("회원가입이 완료되었습니다 ❗<hr><br>바로 로그인하러 가실까요?");
     } else {
       const errorMessage = response.data.msg;
 
       if (errorMessage.includes("유효하지 않은 이메일 형식")) {
-        failModal("❌ 이메일 형식이 올바르지 않습니다. ❌<br>다시 입력해주세요!");
+        failModal("❌ 이메일 형식이 올바르지 않습니다. ❌<hr>다시 입력해주세요 ❗");
       } else if (errorMessage.includes("패스워드는 8자리 이상")) {
-        failModal("❌ 비밀번호는 8자리 이상이며,<br>특수문자와 숫자를 포함해야 합니다. ❌");
+        failModal("비밀번호는 8자리 이상이며,<hr><b>특수문자</b>와 <b>숫자</b>를 포함해야 합니다.");
       } else if (errorMessage.includes("email")) {
-        failModal("❌ email이 중복됩니다. ❌<br>다시 가입해주세요!");
+        failModal("❌ email이 중복됩니다. ❌<hr>다시 가입해주세요 ❗");
       } else {
         failModal("❌ 회원가입 중 오류가 발생했습니다. ❌");
       }

@@ -2,11 +2,11 @@
 /* ✅ 공통 코드
 /* ========================================= */
 @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
+    font-family: 'omyu_pretty';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+    font-weight: normal;
     font-style: normal;
-}
+  }  
 
 * {
     box-sizing: border-box;
@@ -18,7 +18,7 @@
 
 /* 기본 스타일 */
 body {
-    font-family: 'Pretendard-Regular';
+    font-family: 'omyu_pretty';
     background-color: #F0F0F0;
 }
 
@@ -89,7 +89,7 @@ body {
 .form-label {
     margin-left: 8px;
     color: black;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .input-email {
@@ -132,6 +132,8 @@ body {
     box-sizing: border-box;
     height: 44px;
     padding: 10px;
+    font-size: 16px;
+    font-family: 'omyu_pretty';
 }
 
 .form-control:focus {
@@ -140,7 +142,7 @@ body {
 }
 
 .form-control::placeholder {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 400;
     color: #888; 
     opacity: 1;
@@ -160,8 +162,7 @@ body {
     width: 300px;
     color: #ffffff;
     height: 44px;
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 18px;
     background-color: #FB6F92;
     border-radius: 14px; 
     box-sizing: border-box;
@@ -171,8 +172,7 @@ body {
     width: 300px;
     color: #000000;
     height: 44px;
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 18px;
     background-color: #FFFFFF;
     border: 1px solid #FB6F92;    
     border-radius: 14px; 
@@ -190,9 +190,10 @@ body {
 
 .find-btn p, button {
     color: #888;
-    font-size: 12px;
+    font-size: 16px;
     background-color: #ffffff;
     font-weight: 300;
+    font-family: 'omyu_pretty';
 }
 
 /* ========================================= */
@@ -224,11 +225,11 @@ body {
 
 /* ✅ 모달 제목 */
 .modal-box p {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     color: #333;
     margin-bottom: 20px;
-    font-family: 'Pretendard-Regular', sans-serif;
+    font-family: 'omyu_pretty';
 }
 
 /* ✅ 버튼 공통 스타일 */
@@ -236,10 +237,9 @@ body {
     padding: 10px 24px;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 14px;
     font-weight: 500;
     transition: all 0.3s ease-in-out;
-    font-family: 'Pretendard-Regular', sans-serif;
+    font-family: 'omyu_pretty';
     border: none;
     outline: none;
 }
@@ -248,6 +248,7 @@ body {
 #closeModalBtn {
     background: white;
     color: #FB6F92;
+    font-size: 16px;
     border: 2px solid #FB6F92;
 }
 

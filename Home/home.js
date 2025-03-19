@@ -218,27 +218,12 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', () => {
   const tabs = document.querySelectorAll('.menu'); // 탭 요소들 선택
   const bookDesc = document.querySelector('.book-desc h4'); // 배경 글자 변경할 요소 선택
-  const readingList = document.getElementById('reading-now-list'); // "읽고 있어요" 리스트
-  const finishedList = document.getElementById('reading-done-list'); // "다 읽었어요" 리스트
-  const wantToReadList = document.getElementById('reading-want-list'); // "읽고 싶어요" 리스트
-
   const token = sessionStorage.getItem('Authorization');
+
+  // ✅ 로그인하지 않은 경우 메시지 표시 후 함수 종료
   if (!token) {
-    console.warn('로그인 필요');
-    showToast(
-      `<i class="fa-solid fa-triangle-exclamation"></i> 먼저 로그인 해주세요.`
-    );
+    bookDesc.innerHTML = "💢 로그인 후 이용 가능합니다. 💢";
     return;
-  }
-
-  function updateBookCount(books, status) {
-    const headline = document.querySelector('.headline');
-
-    // 해당 상태의 책 개수 계산
-    let bookCount = books.filter((book) => book.status === status).length;
-
-    // UI 업데이트
-    headline.textContent = `${bookCount}권`;
   }
 
   // 탭 클릭 이벤트 추가
@@ -250,23 +235,20 @@ document.addEventListener('DOMContentLoaded', () => {
       // 클릭된 탭에 활성 클래스 추가
       tab.classList.add('active');
 
-      // 선택된 상태에 따라 API에서 데이터 가져오기
+      // 선택된 상태에 따라 텍스트 변경
       let status;
       switch (index) {
         case 0:
           status = '읽고 있어요';
-          bookDesc.innerHTML =
-            '지금 읽고 있는 책을 등록해보세요<i class="fa-regular fa-face-smile"></i>';
+          bookDesc.innerHTML = '지금 읽고 있는 책을 등록해보세요 <i class="fa-regular fa-face-smile"></i>';
           break;
         case 1:
           status = '다 읽었어요';
-          bookDesc.innerHTML =
-            '다 읽은 책을 등록해보세요<i class="fa-regular fa-face-smile"></i>';
+          bookDesc.innerHTML = '다 읽은 책을 등록해보세요 <i class="fa-regular fa-face-smile"></i>';
           break;
         case 2:
           status = '읽고 싶어요';
-          bookDesc.innerHTML =
-            '읽고 싶은 책을 등록해보세요<i class="fa-regular fa-face-smile"></i>';
+          bookDesc.innerHTML = '읽고 싶은 책을 등록해보세요 <i class="fa-regular fa-face-smile"></i>';
           break;
       }
 
@@ -284,12 +266,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // UI 업데이트
         renderBooks(books, status);
-        updateBookCount(books, status);
       } catch (error) {
         console.error(`${status} 책 목록 불러오기 실패:`, error);
       }
     });
   });
+
 
   // 사용자 책 목록 다시 불러오는 함수
   async function fetchUserBooks() {
@@ -502,17 +484,6 @@ document.addEventListener('DOMContentLoaded', function () {
     lastScrollTop = st;
   });
 });
-
-// ========================================
-// ✅ 로그인한 사용자 닉네임 정보 표시
-// ========================================
-// const nickname = sessionStorage.getItem('nickname');
-// if (nickname != null) {
-//   document.getElementById('userName').textContent = nickname + '님';
-// } else {
-//   document.getElementById('userName').textContent =
-//     '💢 로그인 후 이용해주세요.';
-// }
 
 // ========================================
 // ✅ 로그인 상태 확인 후 UI 변경

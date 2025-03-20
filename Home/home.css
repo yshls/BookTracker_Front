@@ -17,20 +17,17 @@
   outline: none;
 }
 
-/* 기본 스타일 */
 body {
   font-family: 'omyu_pretty';
   background-color: #f0f0f0;
 }
 
-/* 전체 레이아웃 */
 .container {
   display: flex;
-  flex-direction: column; /* 세로 정렬 */
-  align-items: center; /* 가운데 정렬 */
+  flex-direction: column; 
+  align-items: center;
 }
 
-/* 사이드바 (좌우에 배치) */
 .sidebar {
   width: 600px;
   min-width: 100px;
@@ -38,15 +35,14 @@ body {
   box-shadow: 2px 4px 6px rgba(54, 45, 45, 0.9);
 }
 
-/* 메인 콘텐츠 (가운데 창) */
 .main-content {
   position: relative;
-  width: 750px; /* 고정된 폭 */
+  width: 750px; 
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto; /* 자동으로 가운데 정렬 */
+  margin: 0 auto; 
   height: 100vh;
   overflow-y: auto;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
@@ -137,7 +133,7 @@ body {
 }
 
 /* ========================================= */
-/* ✅ 독서 목표표
+/* ✅ 독서 목표
 /* ========================================= */
 .progress-fold {
   max-height: 0;
@@ -149,7 +145,7 @@ body {
 .goal-container.open .progress-fold {
   max-height: 200px;
   opacity: 1;
-}
+} 
 
 .goal-container.open .toggle-btn i {
   transform: rotate(180deg);
@@ -158,7 +154,7 @@ body {
 
 .goal-container {
   width: 100%;
-  background-color: #ffe5ec;
+  background-color: #fdd7e2;
   padding: 20px;
   border-radius: 10px;
   transition: padding 0.3s ease-in-out;
@@ -183,33 +179,83 @@ body {
   font-weight: 100;
 }
 
-.goal-setup {
+#goal-setup {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
   text-align: center;
-  padding: 20px;
-  border-radius: 10px;
+  position: relative;
+  flex-direction: column;
 }
 
-#enjoy-goal {
-  font-size: 20px;
-  font-weight: 600;
-}
-.goal-button {
+.goal-set {
   color: #fff;
   font-size: 16px;
   padding: 10px;
   border-radius: 50px;
+  display: block;
+  justify-content: center;
+  align-items: center;
   height: 40px;
   width: 142px;
   margin-top: 10px;
+  margin: 10px auto;
   background: #ff8fab;
   font-weight: 500;
-  transition: padding 0.3s ease-in-out;
+  text-align: center;
   font-family: 'omyu_pretty';
 }
 
-.goal-button:hover {
-  background: #fb6f92;
+#enjoy-goal {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.goal-buttons {
+  display: flex;
+  gap: 10px; 
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px; 
+}
+
+.goal-button {
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 50%;
+  height: 42px;
+  width: 42px;
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+  font-weight: bold;
+  font-family: 'omyu_pretty', sans-serif;
   cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+}
+
+.goal-button:hover {
+  background: linear-gradient(135deg, #e63e5b, #ff5f81);
+  transform: translateY(-3px); 
+}
+
+.goal-button:active {
+  transform: scale(0.95);
+}
+
+.goal-delete {
+  background: linear-gradient(135deg, #6c757d, #adb5bd); 
+}
+
+.goal-delete:hover {
+  background: linear-gradient(135deg, #495057, #868e96); 
 }
 
 .progress-container {
@@ -262,7 +308,6 @@ canvas {
   font-weight: 200;
 }
 
-/* 입력 필드 스타일 */
 #goalInput {
   height: 50px;
   width: 100%;
@@ -274,7 +319,7 @@ canvas {
   border-radius: 10px;
   font-family: 'omyu_pretty';
 }
-/* 모달 하단 버튼 컨테이너 */
+
 .modal-footer {
   display: flex;
   justify-content: space-between;
@@ -283,7 +328,6 @@ canvas {
   padding-top: 15px;
 }
 
-/* 버튼 공통 스타일 */
 .modal-footer button {
   flex: 1;
   height: 40px;
@@ -292,6 +336,72 @@ canvas {
   border: 1px solid #d1d1d1;
   cursor: pointer;
   font-family: 'omyu_pretty';
+}
+
+/* ========================================= */
+/* ✅ 목표 완독 시 모달
+/* ========================================= */
+.modal-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-box {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  width: 360px;
+  animation: slideUp 0.3s ease-in-out;
+}
+
+.modal-box p {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+  font-family: 'omyu_pretty';
+}
+
+.modal-box button {
+  padding: 10px 24px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+  font-family: 'omyu_pretty';
+  border: none;
+  outline: none;
+}
+
+#newGoalConfirm {
+  background: white;
+  color: #FB6F92;
+  font-size: 16px;
+  border: 2px solid #FB6F92;
+}
+
+#closeModalBtn:hover {
+  background: #FB6F92;
+  color: white;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 /* ========================================= */
@@ -318,7 +428,7 @@ canvas {
 }
 
 /* ========================================= */
-/* ✅ 탭 메뉴 -> 읽고 있음, 다 읽음, 읽고 싶음음
+/* ✅ 탭 메뉴 -> 읽고 있음, 다 읽음, 읽고 싶음
 /* ========================================= */
 .menu {
   width: 220px;
@@ -411,9 +521,6 @@ canvas {
   gap: 10px;
 }
 
-/* ========================================= */
-/* ✅ 배경에 글 써져있는거 바뀌는 코드
-/* ========================================= */
 .img-book {
   width: 300px;
   align-items: center;
@@ -424,27 +531,26 @@ canvas {
 .book-desc {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; 
   justify-content: center;
   text-align: center;
-  color: #656565;
-  font-size: 18px;
-  font-weight: 600;
+  color: #656565; 
+  font-size: 18px; 
+  font-weight: 600; 
 }
 
 .book-desc figure {
-  margin-bottom: 10px;
+  margin-bottom: 10px; 
 }
 
 .book-desc i {
   color: #fb6f92;
-  margin-left: 5px;
+  margin-left: 5px; 
 }
 
 /* ========================================= */
 /* ✅ 추가버튼
 /* ========================================= */
-
 .add-btn {
   background-color: #fff;
   color: #656565;
@@ -482,9 +588,7 @@ canvas {
 /* ========================================= */
 /* ✅ 읽고 싶어요 불러오는 css
 /* ========================================= */
-
 .book-item {
-  font-size: 14px;
   display: flex;
   justify-content: space-between;
   padding: 12px;
@@ -492,19 +596,16 @@ canvas {
 }
 
 .book-item img {
-  width: 80px;
+  width: 110px;
   height: auto;
   margin-right: 15px;
 }
 
 .book-title {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin-bottom: 10px;
+  color: #000;
+  font-size: 18px;
+  margin-top: 10px;
 }
 
 .delete-btn {
@@ -527,7 +628,7 @@ canvas {
 }
 .book-info p {
   color: #656565;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .status-select {
@@ -541,12 +642,12 @@ canvas {
   cursor: pointer;
   display: flex;
   justify-content: space-between;
+  font-family: 'omyu_pretty';
   align-items: flex-end;
-  font-size: 12px;
+  font-size: 14px;
   border: 3px solid transparent;
   outline: none;
   transition: border 0.3s ease;
-
   margin-left: auto;
 }
 
@@ -557,7 +658,6 @@ canvas {
 /* ========================================= */
 /* ✅ 토스트 메시지 스타일 추가
 /* ========================================= */
-
 .toast-message {
   position: fixed;
   width: 710px;
@@ -580,7 +680,6 @@ canvas {
 /* ========================================= */
 /* ✅ Modal
 /* ========================================= */
-/*  모달 배경 */
 .modal-bg {
   position: fixed;
   top: 0;
@@ -595,7 +694,6 @@ canvas {
   animation: fadeIn 0.3s ease-in-out;
 }
 
-/*  모달 박스 */
 .modal-box {
   background: white;
   padding: 25px;
@@ -606,7 +704,6 @@ canvas {
   animation: slideUp 0.3s ease-in-out;
 }
 
-/*  모달 제목 */
 .modal-box p {
   font-size: 20px;
   font-weight: 600;
@@ -615,7 +712,6 @@ canvas {
   font-family: 'omyu_pretty';
 }
 
-/*  버튼 공통 스타일 */
 .modal-box button {
   padding: 10px 24px;
   border-radius: 20px;
@@ -627,7 +723,6 @@ canvas {
   outline: none;
 }
 
-/* 네 버튼 */
 #logoutYesBtn {
   background: #fb6f92;
   color: white;
@@ -641,7 +736,6 @@ canvas {
   border-color: #ff4f7d;
 }
 
-/*  아니요 버튼 */
 #logoutNoBtn {
   background: white;
   color: #fb6f92;
@@ -654,7 +748,6 @@ canvas {
   color: white;
 }
 
-/*  모달 애니메이션 */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -682,10 +775,10 @@ footer {
   background-color: #f8f8f8;
   text-align: center;
   padding: 10px 0;
-  margin-top: auto; /* 화면 하단으로 이동 */
-  width: 750px; /* 고정된 폭 */
+  margin-top: auto;
+  width: 750px;
   min-width: 750px;
-  max-width: 750px; /*  크기 변화 방지 */
+  max-width: 750px; 
   font-size: 12px;
   color: #999999;
   box-shadow: none;
@@ -705,7 +798,7 @@ footer a:hover {
 /* ========================================= */
 @media (max-width: 1200px) {
   .sidebar {
-    width: 200px; /* 화면이 작아질 때 사이드바 줄이기 */
+    width: 200px; 
   }
 }
 
@@ -723,6 +816,6 @@ footer a:hover {
 
 @media (max-width: 500px) {
   .sidebar {
-    display: none; /* 화면이 너무 작으면 사이드바 없애기 */
+    display: none; 
   }
 }

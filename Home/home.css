@@ -38,10 +38,6 @@ body {
   box-shadow: 2px 4px 6px rgba(54, 45, 45, 0.9);
 }
 
-#title {
-  margin-top: 35px;
-}
-
 /* 메인 콘텐츠 (가운데 창) */
 .main-content {
   position: relative;
@@ -59,16 +55,19 @@ body {
 /* ========================================= */
 /* ✅ 독서노트
 /* ========================================= */
+
 .title {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0px 0px 20px;
+  padding: 10px 0px 0px 20px;
 }
 
-h1 {
-  font-size: 26px;
+.title-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* ========================================= */
@@ -115,7 +114,7 @@ h1 {
 /* ✅ 프로필 및 독서 목표
 /* ========================================= */
 #user {
-  padding: 20px 0 0 0;
+  padding: 5px 0 0 0;
   width: 710px;
 }
 
@@ -346,7 +345,7 @@ canvas {
 
 .menu.active {
   font-weight: bold;
-  color: #000000;
+  color: #1f1f1f;
 }
 
 .menu.active::after {
@@ -415,25 +414,31 @@ canvas {
 /* ========================================= */
 /* ✅ 배경에 글 써져있는거 바뀌는 코드
 /* ========================================= */
+.img-book {
+  width: 300px;
+  align-items: center;
+  display: block;
+  margin: 0 auto;
+}
+
 .book-desc {
   display: flex;
   flex-direction: column;
-  align-items: center; /* 가운데 정렬 */
+  align-items: center;
   justify-content: center;
   text-align: center;
-
-  color: #656565; /* 텍스트 색상 */
-  font-size: 18px; /* 글자 크기 */
-  font-weight: 600; /* 글자 굵기 */
+  color: #656565;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .book-desc figure {
-  margin-bottom: 10px; /* 아이콘과 텍스트 간격 */
+  margin-bottom: 10px;
 }
 
 .book-desc i {
-  color: #fb6f92; /* 아이콘 색상 */
-  margin-left: 5px; /* 아이콘과 텍스트 간격 */
+  color: #fb6f92;
+  margin-left: 5px;
 }
 
 /* ========================================= */
@@ -452,7 +457,7 @@ canvas {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #fb6f92;
+  border: 1px solid #656565;
 }
 
 .add-btn i {
@@ -463,6 +468,8 @@ canvas {
 .add-btn:hover {
   font-weight: 800;
   cursor: pointer;
+  border: 2px solid #fb6f92;
+  color: #fb6f92;
 }
 
 .add-btn:active {
@@ -694,7 +701,7 @@ footer a:hover {
 }
 
 /* ========================================= */
-/* ✅ 미디어 쿼리리
+/* ✅ 미디어 쿼리
 /* ========================================= */
 @media (max-width: 1200px) {
   .sidebar {

@@ -4,12 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BookTracker</title>
+    <link href="../Home/img/book.png" rel="shortcut icon" type="image/x-icon">
     <link rel="stylesheet" href="home.css" />
     <script
       src="https://kit.fontawesome.com/6333b8e185.js"
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+       @keyframes bustle {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-3px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .bustling span {
+            position: relative;
+            display: inline-block;
+            font-size: 50px;
+            font-weight: bold;
+            color: #fb6f92;
+            text-shadow: 2px 2px #ffc2d1;
+            animation: bustle 1.5s infinite alternate ease-in-out;
+        }
+
+        .bustling span:nth-child(2n) {
+            color: #ffb3c6;
+            text-shadow: 2px 2px #ff8fab;
+            animation-delay: 0.2s;
+        }
+
+        .bustling span:nth-child(3n) {
+            color: #fb6f92;
+            text-shadow: 2px 2px #ffc2d1;
+            animation-delay: 0.4s;
+        }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -20,7 +50,14 @@
       <main class="main-content" id="scrollerCotainer">
         <!-- 네비게이션 -->
         <nav class="title">
-          <h1> 📚 북적북적</h1>
+          <div class="title-header">
+
+            <img src="../Home/img/book.png" class="book-logo" width="55">
+            <h1 class="bustling" aria-label="북적북적">
+              <span aria-hidden="true">북</span><span aria-hidden="true">적</span><span aria-hidden="true">북</span><span aria-hidden="true">적</span>
+            </h1>
+            
+          </div>
           <ul class="auth-links" id="authLinks">
             <!-- 로그인 상태에 따라 JS에서 변경 -->
           </ul>
@@ -84,8 +121,7 @@
             
           </div>
 
-          <div class="book-empty">
-            
+          <div class="book-empty">          
             <div class="book-desc">
               <h4>
                 지금 읽고 있는 책을 등록해보세요<i
@@ -98,17 +134,12 @@
               </div>
 
               <div id="completed-section">
-               
                 <div id="reading-done-list" class="book-list"></div>
               </div>
 
             <div id="wishlist-section">
-          
             <div id="reading-want-list" class="book-list"></div>
             </div>
-            
-            
-     
           </div>
         </section>
       </main>

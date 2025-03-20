@@ -1,148 +1,6 @@
 // ========================================
-// ✅ 차트바 관련
+// ✅ 목표 설정 기능
 // ========================================
-document.addEventListener('DOMContentLoaded', function () {
-  const goalSetup = document.getElementById('goal-setup'); // 목표 설정 UI
-  const progressSection = document.getElementById('progress-section'); // 진행 바 영역
-  const openModalBtn = document.getElementById('edit-goal'); // 목표 설정 버튼
-  const modal = document.getElementById('goalModal'); // 목표 설정 모달
-  const closeModalBtn = document.getElementById('cancelGoal'); // 목표 설정 모달 닫기 버튼
-  const saveGoalBtn = document.getElementById('saveGoal'); // 목표 저장 버튼
-  const goalInput = document.getElementById('goalInput'); // 목표 입력 필드
-  const increaseProgressBtn = document.getElementById('increase-progress'); // 책 한 권 읽기 버튼
-
-  let progressChart; // Chart.js 차트 객체
-  let currentBooks = 0; // 현재 읽은 책 수
-  let totalBooks = 0; // 목표 책 수
-
-  // 처음에는 목표 설정 UI만 보이고, 진행 바 숨김
-  progressSection.style.display = 'none';
-
-  // 목표 설정 모달 열기
-  openModalBtn.addEventListener('click', function () {
-    modal.style.display = 'flex';
-  });
-
-  closeModalBtn.addEventListener('click', function () {
-    modal.style.display = 'none';
-  });
-
-  window.addEventListener('click', function (event) {
-    if (event.target === modal) {
-      modal.style.display = 'none';
-    }
-  });
-
-  // 목표 저장 버튼 클릭 시 차트 생성
-  saveGoalBtn.addEventListener('click', function () {
-    let newTotal = goalInput.value;
-
-    if (newTotal && !isNaN(newTotal) && newTotal > 0) {
-      totalBooks = parseInt(newTotal);
-      document.getElementById('total-books').textContent = totalBooks;
-      modal.style.display = 'none';
-
-      // 목표가 설정되면 설정 UI 숨기고 진행 바 표시
-      goalSetup.style.display = 'none';
-      progressSection.style.display = 'block';
-
-      // Chart.js 진행 바 생성
-      const canvas = document.getElementById('progressChart');
-      if (!canvas) {
-        console.error(" 'progressChart' 요소를 찾을 수 없습니다.");
-        return;
-      }
-      const ctx = canvas.getContext('2d');
-
-      if (progressChart) {
-        progressChart.destroy(); // 기존 차트 삭제 후 새로 생성
-      }
-
-      progressChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['진행률'],
-          datasets: [
-            {
-              label: '독서 진행률',
-              data: [(currentBooks / totalBooks) * 100],
-              backgroundColor: ['#fb6f92'], //  진행 바 색상 설정
-              borderRadius: 10,
-              borderSkipped: false,
-            },
-          ],
-        },
-        options: {
-          indexAxis: 'y',
-          responsive: true,
-          maintainAspectRatio: false,
-          categoryPercentage: 1.0, // 진행바 꽉 차게 설정
-          barPercentage: 1.0, // 진행바 꽉 차게 설정
-          scales: {
-            x: {
-              beginAtZero: true,
-              max: 100,
-              display: false,
-            },
-            y: {
-              display: false,
-            },
-          },
-          plugins: {
-            legend: { display: false },
-            tooltip: { enabled: false },
-          },
-        },
-      });
-
-      updateProgress();
-    }
-  });
-
-  // 진행률 업데이트 함수
-  function updateProgress() {
-    if (progressChart) {
-      let progress = totalBooks > 0 ? (currentBooks / totalBooks) * 100 : 0;
-      progressChart.data.datasets[0].data = [progress];
-      progressChart.update();
-    }
-
-    document.getElementById('current-books').textContent = currentBooks;
-    document.getElementById('progress-text').textContent = `${Math.round(
-      (currentBooks / totalBooks) * 100
-    )}%`;
-  }
-
-  // 책 한 권 읽기 버튼 클릭 이벤트
-  increaseProgressBtn.addEventListener('click', function () {
-    if (currentBooks < totalBooks) {
-      currentBooks++;
-      updateProgress();
-    } else {
-      alert('목표를 이미 달성했습니다!');
-    }
-  });
-
-  // 독서 목표 토글 기능 (펼치기/접기)
-  const toggleBtns = document.querySelectorAll('.toggle-btn');
-
-  console.log(`.toggle-btn 요소 개수: ${toggleBtns.length}`);
-
-  toggleBtns.forEach((btn) => {
-    btn.addEventListener('click', function () {
-      const goalContainer = this.closest('.goal-container');
-
-      if (!goalContainer) {
-        console.error("'goal-container'를 찾을 수 없습니다.");
-        return;
-      }
-
-      goalContainer.classList.toggle('open');
-
-      console.log(`goal-container 클래스 목록: ${goalContainer.classList}`);
-    });
-  });
-});
 
 // ========================================
 // ✅ 총 몇권 클릭 설정
@@ -186,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 로그인하지 않은 경우 메시지 표시 후 함수 종료
   if (!token) {
-    bookDesc.innerHTML = '💢 로그인 후 이용 가능합니다. 💢';
+    bookDesc.innerHTML = '⚠️ 로그인 후 이용 가능합니다.';
     return;
   }
 
@@ -204,18 +62,16 @@ document.addEventListener('DOMContentLoaded', () => {
       switch (index) {
         case 0:
           status = '읽고 있어요';
-          bookDesc.innerHTML =
-            '지금 읽고 있는 책을 등록해보세요 <i class="fa-regular fa-face-smile"></i>';
+          bookDesc.innerHTML = `<img src="../Home/img/reading.png" class="img-book">지금 읽고 있는 책을 등록해보세요 `;
           break;
         case 1:
           status = '다 읽었어요';
-          bookDesc.innerHTML =
-            '다 읽은 책을 등록해보세요 <i class="fa-regular fa-face-smile"></i>';
+          bookDesc.innerHTML = `<img src="../Home/img/done.png" class="img-book">다 읽은 책을 등록해보세요`;
           break;
         case 2:
           status = '읽고 싶어요';
-          bookDesc.innerHTML =
-            '읽고 싶은 책을 등록해보세요 <i class="fa-regular fa-face-smile"></i>';
+          bookDesc.innerHTML = `<img src="../Home/img/book-together.png" class="img-book">
+            읽고 싶은 책을 등록해보세요`;
           break;
       }
 
@@ -350,7 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 책 상태 변경 함수
-  // 책 상태 변경 함수
   async function updateBookStatus(book, newStatus) {
     const token = sessionStorage.getItem('Authorization');
 
@@ -416,11 +271,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // 책삭제
   async function deleteBook(book_id) {
     const token = sessionStorage.getItem('Authorization');
-
-    console.log('📌 삭제 요청 - book_id:', book_id, 'token:', token);
+    console.log('삭제 요청 - book_id:', book_id, 'token:', token);
 
     if (!token) {
-      console.error('❌ 인증 토큰이 없습니다. 로그인하세요.');
+      console.error('인증 토큰이 없습니다. 로그인하세요.');
       alert('로그인이 필요합니다.');
       return;
     }
@@ -435,13 +289,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       );
 
-      console.log('📌 삭제 성공:', response.data);
+      console.log('삭제 성공:', response.data);
       alert(response.data); // 서버에서 온 응답 메시지 표시
 
       // 페이지 자동 새로고침 (삭제 후 목록 갱신)
       window.location.reload();
     } catch (error) {
-      console.error('❌ 책 삭제 실패:', error.response?.data || error.message);
+      console.error('책 삭제 실패:', error.response?.data || error.message);
       alert('삭제 실패: ' + (error.response?.data || '서버 오류'));
     }
   }
@@ -544,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('logoutBtn').addEventListener('click', logout);
   } else {
     //  로그아웃 상태 (자동 로그아웃 후에도 이 상태로 보이게 됨)
-    userName.textContent = '💢 로그인 후 이용해주세요.';
+    userName.textContent = '⚠️ 로그인 후 이용해주세요.';
     authLinks.innerHTML = `
       <li><a href="../SignUp/signup.html">SignUp</a></li>
       <p id="slash">|</p>
@@ -604,7 +458,7 @@ async function checkLoginStatus() {
       showLogoutModal(); // 로그아웃 모달 띄우기
     }
   } catch (error) {
-    console.error('❌ 로그인 상태 확인 오류:', error);
+    console.error('로그인 상태 확인 오류:', error);
   }
 }
 

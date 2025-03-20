@@ -3,7 +3,8 @@
 /* ========================================= */
 @font-face {
   font-family: 'omyu_pretty';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2')
+    format('woff2');
   font-weight: normal;
   font-style: normal;
 }
@@ -19,7 +20,7 @@
 /* 기본 스타일 */
 body {
   font-family: 'omyu_pretty';
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
 }
 
 /* 전체 레이아웃 */
@@ -37,10 +38,6 @@ body {
   box-shadow: 2px 4px 6px rgba(54, 45, 45, 0.9);
 }
 
-#title {
-  margin-top: 35px;
-}
-
 /* 메인 콘텐츠 (가운데 창) */
 .main-content {
   position: relative;
@@ -52,22 +49,25 @@ body {
   margin: 0 auto; /* 자동으로 가운데 정렬 */
   height: 100vh;
   overflow-y: auto;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* ========================================= */
 /* ✅ 독서노트
 /* ========================================= */
+
 .title {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0px 0px 20px;
+  padding: 10px 0px 0px 20px;
 }
 
-h1 {
-  font-size: 26px;
+.title-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* ========================================= */
@@ -114,18 +114,13 @@ h1 {
 /* ✅ 프로필 및 독서 목표
 /* ========================================= */
 #user {
-  padding: 20px 0 0 0;
+  padding: 5px 0 0 0;
   width: 710px;
 }
 
 .user-area {
   display: flex;
   justify-content: space-between;
-}
-
-.user-img {
-  width: 50px;
-  border-radius: 50%;
 }
 
 .user-left {
@@ -175,7 +170,7 @@ h1 {
 }
 
 #goalHeader {
-  font-size: 18px; 
+  font-size: 18px;
 }
 
 .fa-flag {
@@ -254,6 +249,7 @@ canvas {
   height: 220px;
   text-align: center;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .book-goal {
@@ -349,7 +345,7 @@ canvas {
 
 .menu.active {
   font-weight: bold;
-  color: #000000;
+  color: #1f1f1f;
 }
 
 .menu.active::after {
@@ -416,105 +412,33 @@ canvas {
 }
 
 /* ========================================= */
-/* ✅ 최근 읽은 순 -> 드롭다운운
-/* ========================================= */
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-  width: 140px;
-  border: 2px solid #d1d1d1;
-  border-radius: 10px; /* 기본적으로 라운드 처리 */
-  transition: border-radius 0.3s ease;
-  box-sizing: border-box;
-}
-
-.dropdown.open {
-  border-radius: 10px;
-}
-
-.dropdown-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* 텍스트 왼쪽, 아이콘 오른쪽 */
-  cursor: pointer;
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: 10px;
-  padding: 2px 12px;
-}
-
-.dropdown-input {
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  text-align: left;
-  background: transparent;
-  height: 34px;
-  width: 100%;
-  border: none;
-  outline: none;
-  box-sizing: border-box;
-  font-family: 'omyu_pretty';
-}
-
-.dropdown-toggle i {
-  display: flex;
-  align-items: center;
-}
-
-.dropdown-list {
-  position: absolute;
-  top: 100%;
-  width: 100%;
-  background: #fff;
-  border: 2px solid #d1d1d1;
-  border-radius: 10px;
-  list-style: none;
-  margin-top: 4px;
-}
-
-.dropdown.open .dropdown-list {
-  display: block;
-}
-
-.dropdown-item {
-  padding: 8px 12px;
-  cursor: pointer;
-  white-space: nowrap;
-  text-align: left;
-  box-sizing: border-box;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-.dropdown-item:hover {
-  background: #ffe5ec;
-  border-radius: 10px;
-}
-
-/* ========================================= */
 /* ✅ 배경에 글 써져있는거 바뀌는 코드
 /* ========================================= */
+.img-book {
+  width: 300px;
+  align-items: center;
+  display: block;
+  margin: 0 auto;
+}
+
 .book-desc {
   display: flex;
   flex-direction: column;
-  align-items: center; /* 가운데 정렬 */
+  align-items: center;
   justify-content: center;
   text-align: center;
-
-  color: #656565; /* 텍스트 색상 */
-  font-size: 18px; /* 글자 크기 */
-  font-weight: 600; /* 글자 굵기 */
+  color: #656565;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .book-desc figure {
-  margin-bottom: 10px; /* 아이콘과 텍스트 간격 */
+  margin-bottom: 10px;
 }
 
 .book-desc i {
-  color: #fb6f92; /* 아이콘 색상 */
-  margin-left: 5px; /* 아이콘과 텍스트 간격 */
+  color: #fb6f92;
+  margin-left: 5px;
 }
 
 /* ========================================= */
@@ -522,24 +446,18 @@ canvas {
 /* ========================================= */
 
 .add-btn {
-  position: absolute;
-
-  bottom: 20px;
-  right: 20px;
-  background-color: #ff8fab;
-  color: #fff;
-  font-size: 24px;
-  width: 50px;
-  height: 50px;
+  background-color: #fff;
+  color: #656565;
+  font-size: 18px;
+  width: 100px;
+  height: 30px;
   border-radius: 10px;
-  cursor: pointer;
-
   text-decoration: none;
-
   line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid #656565;
 }
 
 .add-btn i {
@@ -548,7 +466,17 @@ canvas {
 }
 
 .add-btn:hover {
-  background-color: #fb6f92;
+  font-weight: 800;
+  cursor: pointer;
+  border: 2px solid #fb6f92;
+  color: #fb6f92;
+}
+
+.add-btn:active {
+  border: 2px solid #fb6f92;
+  color: #fb6f92;
+  font-weight: 800;
+  cursor: pointer;
 }
 
 /* ========================================= */
@@ -570,7 +498,25 @@ canvas {
 }
 
 .book-title {
-  margin-bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  margin-left: auto;
+  transform: 0.2s ease-in-out;
+}
+
+.delete-btn:hover {
+  transform: scale(1.2);
 }
 
 .book-info {
@@ -631,15 +577,16 @@ canvas {
   opacity: 0;
 }
 
-
 /* ========================================= */
 /* ✅ Modal
 /* ========================================= */
-/* ✅ 모달 배경 */
+/*  모달 배경 */
 .modal-bg {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
@@ -648,7 +595,7 @@ canvas {
   animation: fadeIn 0.3s ease-in-out;
 }
 
-/* ✅ 모달 박스 */
+/*  모달 박스 */
 .modal-box {
   background: white;
   padding: 25px;
@@ -659,7 +606,7 @@ canvas {
   animation: slideUp 0.3s ease-in-out;
 }
 
-/* ✅ 모달 제목 */
+/*  모달 제목 */
 .modal-box p {
   font-size: 20px;
   font-weight: 600;
@@ -668,7 +615,7 @@ canvas {
   font-family: 'omyu_pretty';
 }
 
-/* ✅ 버튼 공통 스타일 */
+/*  버튼 공통 스타일 */
 .modal-box button {
   padding: 10px 24px;
   border-radius: 20px;
@@ -680,11 +627,11 @@ canvas {
   outline: none;
 }
 
-/* ✅ 네 버튼 */
+/* 네 버튼 */
 #logoutYesBtn {
-  background: #FB6F92;
+  background: #fb6f92;
   color: white;
-  border: 2px solid #FB6F92;
+  border: 2px solid #fb6f92;
   font-size: 16px;
   box-shadow: 0 4px 8px rgba(251, 111, 146, 0.3);
 }
@@ -694,28 +641,38 @@ canvas {
   border-color: #ff4f7d;
 }
 
-/* ✅ 아니요 버튼 */
+/*  아니요 버튼 */
 #logoutNoBtn {
   background: white;
-  color: #FB6F92;
+  color: #fb6f92;
   font-size: 16px;
-  border: 2px solid #FB6F92;
+  border: 2px solid #fb6f92;
 }
 
 #logoutNoBtn:hover {
-  background: #FB6F92;
+  background: #fb6f92;
   color: white;
 }
 
-/* ✅ 모달 애니메이션 */
+/*  모달 애니메이션 */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* ========================================= */
@@ -728,7 +685,7 @@ footer {
   margin-top: auto; /* 화면 하단으로 이동 */
   width: 750px; /* 고정된 폭 */
   min-width: 750px;
-  max-width: 750px; /* ✅ 크기 변화 방지 */
+  max-width: 750px; /*  크기 변화 방지 */
   font-size: 12px;
   color: #999999;
   box-shadow: none;
@@ -744,7 +701,7 @@ footer a:hover {
 }
 
 /* ========================================= */
-/* ✅ 미디어 쿼리리
+/* ✅ 미디어 쿼리
 /* ========================================= */
 @media (max-width: 1200px) {
   .sidebar {

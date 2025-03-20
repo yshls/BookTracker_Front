@@ -250,6 +250,7 @@ canvas {
   height: 220px;
   text-align: center;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .book-goal {

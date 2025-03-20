@@ -177,42 +177,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // ========================================
-// ✅ 드롭 다운(최근 읽은 순, 가나다순순)
-// ========================================
-document.addEventListener('DOMContentLoaded', function () {
-  const dropdown = document.querySelector('.dropdown');
-  const dropdownToggle = document.querySelector('.dropdown-toggle');
-  const dropdownList = document.querySelector('.dropdown-list');
-  const dropdownInput = document.querySelector('.dropdown-input');
-  const dropdownItems = document.querySelectorAll('.dropdown-item');
-
-  // 드롭다운 기본적으로 닫아두기
-  dropdownList.style.display = 'none';
-
-  // 드롭다운 열고 닫기
-  dropdownToggle.addEventListener('click', function (event) {
-    event.stopPropagation(); // 클릭 이벤트가 부모 요소로 전파되지 않도록 방지
-    dropdownList.style.display =
-      dropdownList.style.display === 'block' ? 'none' : 'block';
-  });
-
-  // 옵션 선택 시 input 값 변경 및 닫기
-  dropdownItems.forEach((item) => {
-    item.addEventListener('click', function () {
-      dropdownInput.value = this.textContent; // 선택한 값으로 변경
-      dropdownList.style.display = 'none'; // 선택 후 드롭다운 닫기
-    });
-  });
-
-  // 드롭다운 외부 클릭 시 닫기
-  document.addEventListener('click', function (event) {
-    if (!dropdown.contains(event.target)) {
-      dropdownList.style.display = 'none';
-    }
-  });
-});
-
-// ========================================
 // ✅ 배경에 글 써져있는거
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -222,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ✅ 로그인하지 않은 경우 메시지 표시 후 함수 종료
   if (!token) {
-    bookDesc.innerHTML = "💢 로그인 후 이용 가능합니다. 💢";
+    bookDesc.innerHTML = '💢 로그인 후 이용 가능합니다. 💢';
     return;
   }
 
@@ -240,15 +204,18 @@ document.addEventListener('DOMContentLoaded', () => {
       switch (index) {
         case 0:
           status = '읽고 있어요';
-          bookDesc.innerHTML = '지금 읽고 있는 책을 등록해보세요 <i class="fa-regular fa-face-smile"></i>';
+          bookDesc.innerHTML =
+            '지금 읽고 있는 책을 등록해보세요 <i class="fa-regular fa-face-smile"></i>';
           break;
         case 1:
           status = '다 읽었어요';
-          bookDesc.innerHTML = '다 읽은 책을 등록해보세요 <i class="fa-regular fa-face-smile"></i>';
+          bookDesc.innerHTML =
+            '다 읽은 책을 등록해보세요 <i class="fa-regular fa-face-smile"></i>';
           break;
         case 2:
           status = '읽고 싶어요';
-          bookDesc.innerHTML = '읽고 싶은 책을 등록해보세요 <i class="fa-regular fa-face-smile"></i>';
+          bookDesc.innerHTML =
+            '읽고 싶은 책을 등록해보세요 <i class="fa-regular fa-face-smile"></i>';
           break;
       }
 
@@ -271,7 +238,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-
 
   // 사용자 책 목록 다시 불러오는 함수
   async function fetchUserBooks() {
@@ -489,19 +455,19 @@ document.addEventListener('DOMContentLoaded', function () {
 // ✅ 로그인 상태 확인 후 UI 변경
 // ========================================
 document.addEventListener('DOMContentLoaded', function () {
-  const authLinks = document.getElementById("authLinks");
-  const userName = document.getElementById("userName");
-  const token = sessionStorage.getItem("Authorization");
-  const nickname = sessionStorage.getItem("nickname");
+  const authLinks = document.getElementById('authLinks');
+  const userName = document.getElementById('userName');
+  const token = sessionStorage.getItem('Authorization');
+  const nickname = sessionStorage.getItem('nickname');
 
   if (token && nickname) {
     // ✅ 로그인 상태
-    userName.textContent = nickname + "님";
+    userName.textContent = nickname + '님';
     authLinks.innerHTML = `<li><a href="#" id="logoutBtn">Logout</a></li>`;
-    document.getElementById("logoutBtn").addEventListener("click", logout);
+    document.getElementById('logoutBtn').addEventListener('click', logout);
   } else {
     // ✅ 로그아웃 상태 (자동 로그아웃 후에도 이 상태로 보이게 됨)
-    userName.textContent = "💢 로그인 후 이용해주세요.";
+    userName.textContent = '💢 로그인 후 이용해주세요.';
     authLinks.innerHTML = `
       <li><a href="../SignUp/signup.html">SignUp</a></li>
       <p id="slash">|</p>
@@ -547,21 +513,21 @@ let loginCheckInterval = setInterval(checkLoginStatus, 60000);
 // ✅ 로그아웃 상태 확인 함수 -> 모달창 띄우기
 // ===========================================
 async function checkLoginStatus() {
-  const token = sessionStorage.getItem("Authorization");
+  const token = sessionStorage.getItem('Authorization');
 
   if (!token) return; // 토큰이 없으면 그냥 return (로그인 안 된 상태)
 
   try {
-    const response = await axios.get("http://localhost:8080/checkToken", {
+    const response = await axios.get('http://localhost:8080/checkToken', {
       headers: { Authorization: token },
     });
 
-    if (response.data.expired === "true") {
+    if (response.data.expired === 'true') {
       clearInterval(loginCheckInterval); // ✅ 세션 만료 시 `setInterval` 중지
       showLogoutModal(); // ✅ 로그아웃 모달 띄우기
     }
   } catch (error) {
-      console.error("❌ 로그인 상태 확인 오류:", error);
+    console.error('❌ 로그인 상태 확인 오류:', error);
   }
 }
 
@@ -569,12 +535,12 @@ async function checkLoginStatus() {
 // ✅ 로그아웃 모달 띄우기
 // ===========================================
 function showLogoutModal() {
-  const existingModal = document.getElementById("logoutModal");
+  const existingModal = document.getElementById('logoutModal');
   if (existingModal) return; // 이미 모달이 있다면 추가 생성 X
 
-  const modal = document.createElement("div");
-  modal.id = "logoutModal";
-  modal.classList.add("modal-bg");
+  const modal = document.createElement('div');
+  modal.id = 'logoutModal';
+  modal.classList.add('modal-bg');
   modal.innerHTML = `
       <div class="modal-box">
           <p>❌ 세션이 만료되었습니다. ❌<hr>계속하려면 다시 로그인해 주세요.</p>
@@ -586,13 +552,15 @@ function showLogoutModal() {
   document.body.appendChild(modal);
 
   // ✅ "네(Yes)" 버튼 클릭 시 로그인 페이지로 이동
-  document.getElementById("logoutYesBtn").addEventListener("click", function () {
-    sessionStorage.clear(); // ✅ 세션스토리지 삭제
-    window.location.href = "../Login/login.html"; // 로그인 페이지로 이동
-  });
+  document
+    .getElementById('logoutYesBtn')
+    .addEventListener('click', function () {
+      sessionStorage.clear(); // ✅ 세션스토리지 삭제
+      window.location.href = '../Login/login.html'; // 로그인 페이지로 이동
+    });
 
   // ✅ "아니요(No)" 버튼 클릭 시 모달만 닫고 홈 화면 리로드 (로그아웃된 상태)
-  document.getElementById("logoutNoBtn").addEventListener("click", function () {
+  document.getElementById('logoutNoBtn').addEventListener('click', function () {
     sessionStorage.clear(); // ✅ 세션스토리지 삭제
     modal.remove(); // 모달 제거
     location.reload(); // 홈 화면 리로드

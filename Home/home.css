@@ -3,7 +3,8 @@
 /* ========================================= */
 @font-face {
   font-family: 'omyu_pretty';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2')
+    format('woff2');
   font-weight: normal;
   font-style: normal;
 }
@@ -19,7 +20,7 @@
 /* 기본 스타일 */
 body {
   font-family: 'omyu_pretty';
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
 }
 
 /* 전체 레이아웃 */
@@ -52,7 +53,7 @@ body {
   margin: 0 auto; /* 자동으로 가운데 정렬 */
   height: 100vh;
   overflow-y: auto;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* ========================================= */
@@ -175,7 +176,7 @@ h1 {
 }
 
 #goalHeader {
-  font-size: 18px; 
+  font-size: 18px;
 }
 
 .fa-flag {
@@ -522,24 +523,18 @@ canvas {
 /* ========================================= */
 
 .add-btn {
-  position: absolute;
-
-  bottom: 20px;
-  right: 20px;
-  background-color: #ff8fab;
-  color: #fff;
-  font-size: 24px;
-  width: 50px;
-  height: 50px;
+  background-color: #fff;
+  color: #000000;
+  font-size: 18px;
+  width: 100px;
+  height: 30px;
   border-radius: 10px;
-  cursor: pointer;
-
   text-decoration: none;
-
   line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid #fb6f92;
 }
 
 .add-btn i {
@@ -548,7 +543,15 @@ canvas {
 }
 
 .add-btn:hover {
-  background-color: #fb6f92;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.add-btn:active {
+  border: 2px solid #fb6f92;
+  color: #fb6f92;
+  font-weight: 800;
+  cursor: pointer;
 }
 
 /* ========================================= */
@@ -631,15 +634,16 @@ canvas {
   opacity: 0;
 }
 
-
 /* ========================================= */
 /* ✅ Modal
 /* ========================================= */
 /* ✅ 모달 배경 */
 .modal-bg {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
@@ -682,9 +686,9 @@ canvas {
 
 /* ✅ 네 버튼 */
 #logoutYesBtn {
-  background: #FB6F92;
+  background: #fb6f92;
   color: white;
-  border: 2px solid #FB6F92;
+  border: 2px solid #fb6f92;
   font-size: 16px;
   box-shadow: 0 4px 8px rgba(251, 111, 146, 0.3);
 }
@@ -697,25 +701,35 @@ canvas {
 /* ✅ 아니요 버튼 */
 #logoutNoBtn {
   background: white;
-  color: #FB6F92;
+  color: #fb6f92;
   font-size: 16px;
-  border: 2px solid #FB6F92;
+  border: 2px solid #fb6f92;
 }
 
 #logoutNoBtn:hover {
-  background: #FB6F92;
+  background: #fb6f92;
   color: white;
 }
 
 /* ✅ 모달 애니메이션 */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* ========================================= */

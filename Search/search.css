@@ -3,7 +3,8 @@
 /* ========================================= */
 @font-face {
   font-family: 'omyu_pretty';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2')
+    format('woff2');
   font-weight: normal;
   font-style: normal;
 }
@@ -18,7 +19,7 @@
 
 body {
   font-family: 'omyu_pretty';
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
 }
 
 .container {
@@ -124,6 +125,13 @@ h1 {
 
 .search-area button:hover {
   background: #fb6f92;
+}
+
+.img-search {
+  width: 300px;
+  align-items: center;
+  display: block;
+  margin: 0 auto;
 }
 
 /* ========================================= */

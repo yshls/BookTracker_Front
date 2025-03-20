@@ -3,7 +3,8 @@
 /* ========================================= */
 @font-face {
   font-family: 'omyu_pretty';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2')
+    format('woff2');
   font-weight: normal;
   font-style: normal;
 }
@@ -18,7 +19,7 @@
 
 body {
   font-family: 'omyu_pretty';
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
 }
 
 .container {
@@ -34,10 +35,6 @@ body {
   box-shadow: 2px 4px 6px rgba(54, 45, 45, 0.9);
 }
 
-#title {
-  margin-top: 35px;
-}
-
 .main-content {
   position: relative;
   width: 750px; 
@@ -48,22 +45,25 @@ body {
   margin: 0 auto; 
   height: 100vh;
   overflow-y: auto;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* ========================================= */
 /* ✅ 독서노트
 /* ========================================= */
+
 .title {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0px 0px 20px;
+  padding: 10px 0px 0px 20px;
 }
 
-h1 {
-  font-size: 26px;
+.title-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* ========================================= */
@@ -110,18 +110,13 @@ h1 {
 /* ✅ 프로필 및 독서 목표
 /* ========================================= */
 #user {
-  padding: 20px 0 0 0;
+  padding: 5px 0 0 0;
   width: 710px;
 }
 
 .user-area {
   display: flex;
   justify-content: space-between;
-}
-
-.user-img {
-  width: 50px;
-  border-radius: 50%;
 }
 
 .user-left {
@@ -171,7 +166,7 @@ h1 {
 }
 
 #goalHeader {
-  font-size: 18px; 
+  font-size: 18px;
 }
 
 .fa-flag {
@@ -300,6 +295,7 @@ canvas {
   height: 220px;
   text-align: center;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .book-goal {
@@ -459,7 +455,7 @@ canvas {
 
 .menu.active {
   font-weight: bold;
-  color: #000000;
+  color: #1f1f1f;
 }
 
 .menu.active::after {
@@ -525,94 +521,19 @@ canvas {
   gap: 10px;
 }
 
-/* ========================================= */
-/* ✅ 최근 읽은 순 -> 드롭다운
-/* ========================================= */
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-  width: 140px;
-  border: 2px solid #d1d1d1;
-  border-radius: 10px; 
-  transition: border-radius 0.3s ease;
-  box-sizing: border-box;
-}
-
-.dropdown.open {
-  border-radius: 10px;
-}
-
-.dropdown-toggle {
-  display: flex;
+.img-book {
+  width: 300px;
   align-items: center;
-  justify-content: space-between; 
-  cursor: pointer;
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: 10px;
-  padding: 2px 12px;
-}
-
-.dropdown-input {
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  text-align: left;
-  background: transparent;
-  height: 34px;
-  width: 100%;
-  border: none;
-  outline: none;
-  box-sizing: border-box;
-  font-family: 'omyu_pretty';
-}
-
-.dropdown-toggle i {
-  display: flex;
-  align-items: center;
-}
-
-.dropdown-list {
-  position: absolute;
-  top: 100%;
-  width: 100%;
-  background: #fff;
-  border: 2px solid #d1d1d1;
-  border-radius: 10px;
-  list-style: none;
-  margin-top: 4px;
-}
-
-.dropdown.open .dropdown-list {
   display: block;
+  margin: 0 auto;
 }
 
-.dropdown-item {
-  padding: 8px 12px;
-  cursor: pointer;
-  white-space: nowrap;
-  text-align: left;
-  box-sizing: border-box;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-.dropdown-item:hover {
-  background: #ffe5ec;
-  border-radius: 10px;
-}
-
-/* ========================================= */
-/* ✅ 배경에 글 써져있는거 바뀌는 코드
-/* ========================================= */
 .book-desc {
   display: flex;
   flex-direction: column;
   align-items: center; 
   justify-content: center;
   text-align: center;
-
   color: #656565; 
   font-size: 18px; 
   font-weight: 600; 
@@ -627,35 +548,22 @@ canvas {
   margin-left: 5px; 
 }
 
-#book-list-container {
-  flex-grow: 1; 
-  overflow-y: auto; 
-  margin-top: 12px;
-  border-top: 1px solid #d1d1d1; 
-}
-
 /* ========================================= */
 /* ✅ 추가버튼
 /* ========================================= */
 .add-btn {
-  position: absolute;
-
-  bottom: 20px;
-  right: 20px;
-  background-color: #ff8fab;
-  color: #fff;
-  font-size: 24px;
-  width: 50px;
-  height: 50px;
+  background-color: #fff;
+  color: #656565;
+  font-size: 18px;
+  width: 100px;
+  height: 30px;
   border-radius: 10px;
-  cursor: pointer;
-
   text-decoration: none;
-
   line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid #656565;
 }
 
 .add-btn i {
@@ -664,7 +572,17 @@ canvas {
 }
 
 .add-btn:hover {
-  background-color: #fb6f92;
+  font-weight: 800;
+  cursor: pointer;
+  border: 2px solid #fb6f92;
+  color: #fb6f92;
+}
+
+.add-btn:active {
+  border: 2px solid #fb6f92;
+  color: #fb6f92;
+  font-weight: 800;
+  cursor: pointer;
 }
 
 /* ========================================= */
@@ -688,6 +606,18 @@ canvas {
   color: #000;
   font-size: 18px;
   margin-top: 10px;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  margin-left: auto;
+  transform: 0.2s ease-in-out;
+}
+
+.delete-btn:hover {
+  transform: scale(1.2);
 }
 
 .book-info {
@@ -752,8 +682,10 @@ canvas {
 /* ========================================= */
 .modal-bg {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
@@ -792,9 +724,9 @@ canvas {
 }
 
 #logoutYesBtn {
-  background: #FB6F92;
+  background: #fb6f92;
   color: white;
-  border: 2px solid #FB6F92;
+  border: 2px solid #fb6f92;
   font-size: 16px;
   box-shadow: 0 4px 8px rgba(251, 111, 146, 0.3);
 }
@@ -806,24 +738,34 @@ canvas {
 
 #logoutNoBtn {
   background: white;
-  color: #FB6F92;
+  color: #fb6f92;
   font-size: 16px;
-  border: 2px solid #FB6F92;
+  border: 2px solid #fb6f92;
 }
 
 #logoutNoBtn:hover {
-  background: #FB6F92;
+  background: #fb6f92;
   color: white;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* ========================================= */
@@ -852,7 +794,7 @@ footer a:hover {
 }
 
 /* ========================================= */
-/* ✅ 미디어 쿼리리
+/* ✅ 미디어 쿼리
 /* ========================================= */
 @media (max-width: 1200px) {
   .sidebar {

@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const bookDesc = document.querySelector('.book-desc h4'); // 배경 글자 변경할 요소 선택
   const token = sessionStorage.getItem('Authorization');
 
-  // ✅ 로그인하지 않은 경우 메시지 표시 후 함수 종료
+  // 로그인하지 않은 경우 메시지 표시 후 함수 종료
   if (!token) {
     bookDesc.innerHTML = '💢 로그인 후 이용 가능합니다. 💢';
     return;
@@ -233,6 +233,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // UI 업데이트
         renderBooks(books, status);
+        updateBookCount(books);
+
+        return books; // deleteBook에서 사용할 수 있도록 반환
       } catch (error) {
         console.error(`${status} 책 목록 불러오기 실패:`, error);
       }
@@ -267,6 +270,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function updateBookCount(books) {
+    // 모든 책 개수 합산
+    let totalBookCount = books.length;
+
+    // UI 업데이트 (하나의 개수만 표시)
+    document.getElementById(
+      'total-book-count'
+    ).textContent = `${totalBookCount}권`;
+  }
+
   // 책 목록을 UI에 렌더링
   function renderBooks(books) {
     const readingList = document.getElementById('reading-now-list'); // "읽고 있어요" 리스트
@@ -294,7 +307,13 @@ document.addEventListener('DOMContentLoaded', () => {
      
         <img class="book-cover" src="${book.cover}" alt="${book.title}">
         <div class="book-info">
-          <h4 class="book-title">${book.title}</h4>
+          <h4 class="book-title">${book.title}
+          ${
+            book.status === '읽고 있어요' || book.status === '읽고 싶어요'
+              ? `<button class="delete-btn" onclick="deleteBook(${book.book_id})">🗑️</button>`
+              : ''
+          }
+              </h4>
           <p class="book-author">${book.author} · ${book.publisher}</p>
           
           <select class="status-select">
@@ -309,8 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }> 다 읽었어요</option>
           </select>
 
-
-         
+          
        </div>
        
       `;
@@ -332,14 +350,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 책 상태 변경 함수
+  // 책 상태 변경 함수
   async function updateBookStatus(book, newStatus) {
     const token = sessionStorage.getItem('Authorization');
-    if (!token) {
-      showToast(
-        `<i class="fa-solid fa-triangle-exclamation"></i> 먼저 로그인 해주세요.`
-      );
-      return;
-    }
 
     try {
       // 서버로 요청 보낼 데이터 확인 (book_id가 올바르게 전달되는지 확인)
@@ -361,13 +374,79 @@ document.addEventListener('DOMContentLoaded', () => {
 
       showToast(`${book.title} 상태가 '${newStatus}'로 변경되었습니다.`);
 
-      // 변경 후 목록 다시 불러오기
-      fetchUserBooks(); // 상태 업데이트 후 전체 목록 다시 렌더링
+      // 변경 후, 해당 상태의 책 목록만 다시 불러오기
+      fetchUserBooks(newStatus); // 변경된 상태의 목록만 다시 렌더링
     } catch (error) {
-      console.error(' 책 상태 변경 실패:', error);
-      showToast(' 상태 변경 중 오류 발생');
+      console.error('책 상태 변경 실패:', error);
+      showToast('상태 변경 중 오류 발생');
     }
   }
+
+  async function fetchUserBooks(status = null) {
+    const token = sessionStorage.getItem('Authorization');
+    if (!token) {
+      console.warn('로그인 필요');
+      showToast(
+        `<i class="fa-solid fa-triangle-exclamation"></i> 먼저 로그인 해주세요.`
+      );
+      return [];
+    }
+
+    try {
+      let url = 'http://localhost:8080/api/books/user-books';
+      if (status) {
+        url += `?status=${status}`; // 특정 상태만 불러오기
+      }
+
+      const response = await axios.get(url, {
+        headers: { Authorization: token },
+      });
+
+      const books = response.data;
+      console.log(`${status || '전체'} 책 목록 불러옴:`, books);
+
+      renderBooks(books, status); // 특정 상태만 렌더링
+      return books;
+    } catch (error) {
+      console.error('책 목록 불러오기 실패:', error);
+      return [];
+    }
+  }
+
+  // 책삭제
+  async function deleteBook(book_id) {
+    const token = sessionStorage.getItem('Authorization');
+
+    console.log('📌 삭제 요청 - book_id:', book_id, 'token:', token);
+
+    if (!token) {
+      console.error('❌ 인증 토큰이 없습니다. 로그인하세요.');
+      alert('로그인이 필요합니다.');
+      return;
+    }
+
+    if (!confirm('정말 삭제하시겠습니까?')) return;
+
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/api/books/delete?book_id=${book_id}`,
+        {
+          headers: { Authorization: token },
+        }
+      );
+
+      console.log('📌 삭제 성공:', response.data);
+      alert(response.data); // 서버에서 온 응답 메시지 표시
+
+      // 페이지 자동 새로고침 (삭제 후 목록 갱신)
+      window.location.reload();
+    } catch (error) {
+      console.error('❌ 책 삭제 실패:', error.response?.data || error.message);
+      alert('삭제 실패: ' + (error.response?.data || '서버 오류'));
+    }
+  }
+
+  window.deleteBook = deleteBook; // 전역 함수로 등록
 });
 
 function moveBookToNewStatus(book, newStatus) {
@@ -417,7 +496,6 @@ function moveBookToNewStatus(book, newStatus) {
 }
 document.addEventListener('DOMContentLoaded', function () {
   const scrollContainer = document.getElementById('scrollContainer');
-  // ✅ id="addBtn" → getElementById('addBtn') or querySelector('#addBtn')
   const addBtn = document.getElementById('addBtn');
 
   let lastScrollTop = 0;
@@ -435,7 +513,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', function () {
   const scrollerCotainer = document.getElementById('scrollerCotainer');
-  // ✅ id="addBtn" → getElementById('addBtn') or querySelector('#addBtn')
   const addBtn = document.getElementById('addBtn');
 
   let lastScrollTop = 0;
@@ -461,12 +538,12 @@ document.addEventListener('DOMContentLoaded', function () {
   const nickname = sessionStorage.getItem('nickname');
 
   if (token && nickname) {
-    // ✅ 로그인 상태
+    // 로그인 상태
     userName.textContent = nickname + '님';
     authLinks.innerHTML = `<li><a href="#" id="logoutBtn">Logout</a></li>`;
     document.getElementById('logoutBtn').addEventListener('click', logout);
   } else {
-    // ✅ 로그아웃 상태 (자동 로그아웃 후에도 이 상태로 보이게 됨)
+    //  로그아웃 상태 (자동 로그아웃 후에도 이 상태로 보이게 됨)
     userName.textContent = '💢 로그인 후 이용해주세요.';
     authLinks.innerHTML = `
       <li><a href="../SignUp/signup.html">SignUp</a></li>
@@ -489,7 +566,7 @@ async function logout() {
   }
 
   try {
-    // ✅ 백엔드에 로그아웃 요청
+    // 백엔드에 로그아웃 요청
     await axios.post(
       'http://localhost:8080/logout',
       {},
@@ -501,12 +578,12 @@ async function logout() {
     console.error('❌ 로그아웃 실패:', error);
   }
 
-  // ✅ 클라이언트의 sessionStorage 삭제 후 로그인 페이지로 이동
+  // 클라이언트의 sessionStorage 삭제 후 로그인 페이지로 이동
   sessionStorage.clear();
   window.location.href = '../Login/login.html';
 }
 
-// ✅ `setInterval`의 ID를 저장할 변수
+// `setInterval`의 ID를 저장할 변수
 let loginCheckInterval = setInterval(checkLoginStatus, 60000);
 
 // ===========================================
@@ -523,8 +600,8 @@ async function checkLoginStatus() {
     });
 
     if (response.data.expired === 'true') {
-      clearInterval(loginCheckInterval); // ✅ 세션 만료 시 `setInterval` 중지
-      showLogoutModal(); // ✅ 로그아웃 모달 띄우기
+      clearInterval(loginCheckInterval); //  세션 만료 시 `setInterval` 중지
+      showLogoutModal(); // 로그아웃 모달 띄우기
     }
   } catch (error) {
     console.error('❌ 로그인 상태 확인 오류:', error);
@@ -551,17 +628,17 @@ function showLogoutModal() {
 
   document.body.appendChild(modal);
 
-  // ✅ "네(Yes)" 버튼 클릭 시 로그인 페이지로 이동
+  //  "네(Yes)" 버튼 클릭 시 로그인 페이지로 이동
   document
     .getElementById('logoutYesBtn')
     .addEventListener('click', function () {
-      sessionStorage.clear(); // ✅ 세션스토리지 삭제
+      sessionStorage.clear(); // 세션스토리지 삭제
       window.location.href = '../Login/login.html'; // 로그인 페이지로 이동
     });
 
-  // ✅ "아니요(No)" 버튼 클릭 시 모달만 닫고 홈 화면 리로드 (로그아웃된 상태)
+  // "아니요(No)" 버튼 클릭 시 모달만 닫고 홈 화면 리로드 (로그아웃된 상태)
   document.getElementById('logoutNoBtn').addEventListener('click', function () {
-    sessionStorage.clear(); // ✅ 세션스토리지 삭제
+    sessionStorage.clear(); // 세션스토리지 삭제
     modal.remove(); // 모달 제거
     location.reload(); // 홈 화면 리로드
   });

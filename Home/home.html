@@ -46,8 +46,8 @@
           
             <!-- 목표가 없을 때 보이는 목표 설정 UI -->
             <div id="goal-setup" class="goal-setup">
-              <p id=enjoy-goal>독서 목표를 세우고 계획적인 독서 생활을 즐겨보세요!</p>
-              <button id="edit-goal" class="goal-button">목표 설정</button>
+              <p id="enjoy-goal">독서 목표를 세우고 계획적인 독서 생활을 즐겨보세요!</p>
+              <button id="edit-goal" class="goal-set">목표 설정</button>
             </div>
           
             <!-- 목표가 설정되면 보이는 진행 바 -->
@@ -61,49 +61,45 @@
               </div>
               <div class="progress-container">
                 <canvas id="progressChart"></canvas>
+              </div>
+              <div class="goal-buttons">
+                <button id="increase-progress" class="goal-button">
+                  <i class="fa-solid fa-square-plus"></i>
+                </button>
+                <button id="delete-goal" class="goal-button goal-delete">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
             </div>
-            <button id="increase-progress" class="goal-button"><i1권 class="fa-solid fa-book"></i1권> 완독</button>
-        </div>
           </div>
           
         <!-- 읽고있어요 공간 및 책 추가란 -->
-        <section class="content-area" >
+        <section class="content-area">
           <div class="menu-area">
             <ul class="tab-menu">
-              <li id="readNow" class="menu" ><span>읽고 있어요</span></li>
-              <li id="readDone"class="menu"><span>다 읽었어요</span></li>
+              <li id="readNow" class="menu"><span>읽고 있어요</span></li>
+              <li id="readDone" class="menu"><span>다 읽었어요</span></li>
               <li id="readWant" class="menu"><span>읽고 싶어요</span></li>
             </ul>
-          </div>          
-
+          </div>
+        
           <div class="list-header display-flex">
             <h3 class="headline">0권</h3>
-            
             <div class="dropdown">
-              
               <div class="dropdown-toggle">
-                <input
-                  type="text"
-                  class="dropdown-input"
-                  readonly
-                  value="최근 읽은 순"
-                />
+                <input type="text" class="dropdown-input" readonly value="최근 읽은 순" />
                 <i class="fa-solid fa-caret-down"></i>
-                
               </div>
-              
               <ul class="dropdown-list">
                 <li class="dropdown-item">최근 읽은 순</li>
                 <li class="dropdown-item">등록 순</li>
                 <li class="dropdown-item">가나다 순</li>
               </ul>
-              
             </div>
             <a href="../Search/search.html" class="add-btn" id="addBtn"><i class="fa-solid fa-plus"></i></a>
           </div>
 
           <div class="book-empty">
-            
             <div class="book-desc">
               <h4>
                 지금 읽고 있는 책을 등록해보세요<i
@@ -111,27 +107,24 @@
                 ></i>
               </h4>
 
-              <div id="reading-section">
-                <div id="reading-now-list" class="book-list"></div>
+              <div id="book-list-container">
+                <div id="reading-section">
+                  <div id="reading-now-list" class="book-list"></div>
+                </div>
+              
+                <div id="completed-section">
+                  <div id="reading-done-list" class="book-list"></div>
+                </div>
+              
+                <div id="wishlist-section">
+                  <div id="reading-want-list" class="book-list"></div>
+                </div>
               </div>
-
-              <div id="completed-section">
-               
-                <div id="reading-done-list" class="book-list"></div>
-              </div>
-
-            <div id="wishlist-section">
-          
-            <div id="reading-want-list" class="book-list"></div>
-            </div>
-            
-            
-     
+              
           </div>
         </section>
       </main>
 
-      <!-- 목표 책 수 설정 모달 -->
       <div id="goalModal" class="modal">
         <div class="modal-content">
           <h3 class="book-goal">🎯 독서 목표</h3>
@@ -147,6 +140,13 @@
             <button id="cancelGoal" type="button">취소</button>
             <button id="saveGoal">저장</button>
           </div>
+        </div>
+      </div>
+
+      <div id="newGoalModal" class="modal-bg">
+        <div class="modal-box">
+          <p class="goal-success">🎯 새로운 독서 목표를 설정해볼까요?</p>
+          <button id="newGoalConfirm">확인</button>
         </div>
       </div>
 

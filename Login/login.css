@@ -16,27 +16,23 @@
     outline: none;
 }
 
-/* 기본 스타일 */
 body {
     font-family: 'omyu_pretty';
     background-color: #F0F0F0;
 }
 
-/* 전체 레이아웃 */
 .container {
     display: flex;
     flex-direction: column; 
     align-items: center;  
 }
 
-/* 사이드바 (좌우에 배치) */
 .sidebar {
     width: 600px;
     min-width: 100px;
     transition: width 0.3s ease-in-out;
 }
 
-/* 메인 콘텐츠 (가운데 창) */
 .main-content {
     width: 750px;  
     min-width: 750px;
@@ -179,16 +175,7 @@ body {
     box-sizing: border-box;
 }
 
-.find-btn {
-    display: flex;
-    flex-direction: row;
-    justify-content: center; 
-    align-items: center;
-    gap: 10px;
-    margin-top: 12px;
-}
-
-.find-btn p, button {
+button {
     color: #888;
     font-size: 16px;
     background-color: #ffffff;
@@ -199,7 +186,6 @@ body {
 /* ========================================= */
 /* ✅ Modal
 /* ========================================= */
-/* ✅ 모달 배경 */
 .modal-bg {
     position: fixed;
     top: 0; left: 0;
@@ -212,7 +198,6 @@ body {
     animation: fadeIn 0.3s ease-in-out;
 }
 
-/* ✅ 모달 박스 */
 .modal-box {
     background: white;
     padding: 25px;
@@ -223,7 +208,6 @@ body {
     animation: slideUp 0.3s ease-in-out;
 }
 
-/* ✅ 모달 제목 */
 .modal-box p {
     font-size: 20px;
     font-weight: 600;
@@ -232,7 +216,6 @@ body {
     font-family: 'omyu_pretty';
 }
 
-/* ✅ 버튼 공통 스타일 */
 .modal-box button {
     padding: 10px 24px;
     border-radius: 20px;
@@ -244,7 +227,6 @@ body {
     outline: none;
 }
 
-/* ✅ 확인 버튼 */
 #closeModalBtn {
     background: white;
     color: #FB6F92;
@@ -257,7 +239,6 @@ body {
     color: white;
 }
 
-/* ✅ 모달 애니메이션 */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -271,25 +252,24 @@ body {
 /* ========================================= */
 /* ✅ footer
 /* ========================================= */
-
 footer {
     background-color: #f8f8f8;
     text-align: center;
     padding: 10px 0;
-    margin-top: auto; /* 화면 하단으로 이동 */
-    width: 750px; /* 고정된 폭 */
+    margin-top: auto; 
+    width: 750px; 
     min-width: 750px;
-    max-width: 750px; /* ✅ 크기 변화 방지 */
+    max-width: 750px; 
     font-size: 12px;
     color: #999999;
-  }
+}
   
 /* ========================================= */
 /* ✅ 미디어 쿼리리
 /* ========================================= */
 @media (max-width: 1200px) {
     .sidebar {
-      width: 200px; /* 화면이 작아질 때 사이드바 줄이기 */
+      width: 200px;
     }
 }
   
@@ -307,7 +287,7 @@ footer {
   
 @media (max-width: 500px) {
     .sidebar {
-      display: none; /* 화면이 너무 작으면 사이드바 없애기 */
+      display: none;
     }
 }
   

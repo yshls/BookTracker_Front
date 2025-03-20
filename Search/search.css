@@ -16,20 +16,17 @@
   outline: none;
 }
 
-/* 기본 스타일 */
 body {
   font-family: 'omyu_pretty';
   background-color: #F0F0F0;
 }
 
-/* 전체 레이아웃 */
 .container {
   display: flex;
-  flex-direction: column; /* 세로 정렬 */
-  align-items: center; /* 가운데 정렬 */
+  flex-direction: column; 
+  align-items: center;
 }
 
-/* 사이드바 (좌우에 배치) */
 .sidebar {
   background-color: #d1d1d1;
   width: 600px;
@@ -41,18 +38,18 @@ body {
   margin-top: 35px;
 }
 
-/* 메인 콘텐츠 (가운데 창) */
 .main-content {
-  width: 750px; /* 고정된 폭 */
+  width: 750px; 
   min-width: 750px;
-  max-width: 750px; /* ✅ 크기 변화 방지 */
+  max-width: 750px; 
   background-color: white;
   display: flex;
   flex-direction: column;
   font-size: 20px;
-  margin: 0 auto; /* 자동으로 가운데 정렬 */
+  margin: 0 auto;
   height: 100vh;
 }
+
 /* ========================================= */
 /* ✅ nav
 /* ========================================= */
@@ -150,12 +147,13 @@ h1 {
 .fa-comments {
   margin: 20px;
 }
+
 /* ========================================= */
 /* ✅ 검색 결과 스타일링
 /* ========================================= */
 
 .book-item {
-  font-size: 14px;
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -170,7 +168,7 @@ h1 {
 }
 
 .book-title {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .book-info {
@@ -178,13 +176,10 @@ h1 {
   flex-direction: column;
   flex: 1;
 }
+
 .book-info p {
   color: #656565;
-  font-size: 12px;
-}
-.book-status-dropdown {
-  margin-top: 36px;
-  position: relative;
+  font-size: 14px;
 }
 
 .status-btn {
@@ -196,13 +191,13 @@ h1 {
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  font-size: 12px;
+  font-size: 14px;
   border: 3px solid transparent;
   outline: none;
   transition: border 0.3s ease;
-
   margin-left: auto;
+  align-items: center;
+  font-family: 'omyu_pretty';
 }
 
 .status-btn:focus {
@@ -212,7 +207,6 @@ h1 {
 /* ========================================= */
 /* ✅ 토스트 메시지 스타일 추가
 /* ========================================= */
-
 .toast-message {
   position: fixed;
   width: 710px;
@@ -235,15 +229,14 @@ h1 {
 /* ========================================= */
 /* ✅ footer
 /* ========================================= */
-
 footer {
   background-color: #f8f8f8;
   text-align: center;
   padding: 10px 0;
-  margin-top: auto; /* 화면 하단으로 이동 */
-  width: 750px; /* 고정된 폭 */
+  margin-top: auto; 
+  width: 750px; 
   min-width: 750px;
-  max-width: 750px; /* ✅ 크기 변화 방지 */
+  max-width: 750px; 
   font-size: 12px;
   color: #999999;
 }
@@ -253,7 +246,7 @@ footer {
 /* ========================================= */
 @media (max-width: 1200px) {
   .sidebar {
-    width: 200px; /* 화면이 작아질 때 사이드바 줄이기 */
+    width: 200px; 
   }
 }
 
@@ -271,6 +264,6 @@ footer {
 
 @media (max-width: 500px) {
   .sidebar {
-    display: none; /* 화면이 너무 작으면 사이드바 없애기 */
+    display: none; 
   }
 }

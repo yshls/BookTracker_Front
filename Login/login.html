@@ -1,77 +1,89 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BookTracker</title>
-    <!-- fontawesome -->
-    <script src="https://kit.fontawesome.com/0af8d4fa80.js" crossorigin="anonymous"></script>
-    <!-- CSS -->
-    <link rel="stylesheet" href="login.css">
-</head>
-<body>
+    <script
+      src="https://kit.fontawesome.com/0af8d4fa80.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
     <div class="container">
-        <!-- 왼쪽 사이드바 -->
-        <div class="sidebar"></div>
+      <div class="sidebar"></div>
 
-        <!-- 메인 콘텐츠 -->
-        <main class="main-content">
-            <header class="header">
-                <a href="../Home/home.html" class="back-home" id="backBtn">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="size-6" width="24" height="24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                    </svg>                      
-                </a>
-                <h1 class="title">로그인</h1>
-            </header>
+      <main class="main-content">
+        <header class="header">
+          <a href="../Home/home.html" class="back-home" id="backBtn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="3"
+              stroke="currentColor"
+              class="size-6"
+              width="24"
+              height="24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 19.5 8.25 12l7.5-7.5"
+              />
+            </svg>
+          </a>
+          <h1 class="title">로그인</h1>
+        </header>
 
-            <section class="section">
-                <div class="input-email">
-                    <label for="email" class="form-label">이메일</label>
-                    <input
-                        type="email"
-                        class="form-control"
-                        id="email"
-                        placeholder="이메일"
-                        name="email"
-                    />
-                </div>
-    
-                <div class="input-pwd">
-                    <label for="pwd" class="form-label">비밀번호</label>
-                    <div class="password-container">
-                        <input
-                            type="password"
-                            class="form-control"
-                            id="pwd"
-                            placeholder="비밀번호"
-                            name="pwd"
-                        />
-                        <span id="togglePwd" class="toggle-icon">
-                            <i class="fa-solid fa-eye"></i>
-                        </span>
-                    </div>
-                </div>
-    
-                <div class="btn">
-                    <button type="submit" class="login-btn" id="loginBtn">로그인</button>
-                    <button class="signup-btn" id="signupBtn">가입하기</button>
-                </div>
-            </section>
-        </main>
+        <section class="section">
+          <div class="input-email">
+            <label for="email" class="form-label">이메일</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="이메일"
+              name="email"
+            />
+          </div>
 
-        <!-- 푸터 -->
-        <footer>
-            <p>Copyright © 2025 yshls, H-JuKyung All Rights Reserved.</p>
-        </footer>
-        
-        <!-- 오른쪽 사이드바 -->
-        <div class="sidebar"></div>
+          <div class="input-pwd">
+            <label for="pwd" class="form-label">비밀번호</label>
+            <div class="password-container">
+              <input
+                type="password"
+                class="form-control"
+                id="pwd"
+                placeholder="비밀번호"
+                name="pwd"
+              />
+              <span id="togglePwd" class="toggle-icon">
+                <i class="fa-solid fa-eye"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="btn">
+            <button type="submit" class="login-btn" id="loginBtn">
+              로그인
+            </button>
+            <button class="signup-btn" id="signupBtn">가입하기</button>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <p>Copyright © 2025 yshls, H-JuKyung All Rights Reserved.</p>
+      </footer>
+
+      <!-- 오른쪽 사이드바 -->
+      <div class="sidebar"></div>
     </div>
 
-    <!-- JavaScript-->
     <script src="login.js"></script>
-    <!-- axios cdn 설정 -->
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-</body>
+  </body>
 </html>

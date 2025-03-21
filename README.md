@@ -29,10 +29,10 @@
 
 ## **🎯 The Challenge**
 
-✅ **사용자가 다음 기능을 수행할 수 있어야 합니다:**  
-✔ **회원가입 & 로그인 (Session 기반 인증)**  
-✔ **독서 목표 설정 및 진행률 확인**  
-✔ **책 검색 기능 (네이버 책 API 연동)**
+**사용자가 다음 기능을 수행할 수 있어야 합니다:**  
+**회원가입 & 로그인 (Token 기반 인증)**
+**독서 목표 설정 및 진행률 확인**
+**책 검색 기능 (알라딘 API 연동)**
 
 ---
 
@@ -88,15 +88,15 @@
 
 ## 🛠️ 기술 스택 (Tech Stack)
 
-| 구분         | 사용 기술                              |
-| ------------ | -------------------------------------- |
-| **Frontend** | HTML, CSS, JavaScript, Chart.js        |
-| **Backend**  | Java (Spring), MyBatis (XML 방식), JSP |
-| **Database** | MySQL                                  |
-| **API 연동** | 알라딘 Open API                        |
-| **Session**  | Spring Session 기반 인증 처리          |
-|              |                                        |
-|              |                                        |
+| 구분          | 사용 기술                              |
+| ------------- | -------------------------------------- |
+| **Frontend**  | HTML, CSS, JavaScript, Chart.js        |
+| **Backend**   | Java (Spring), MyBatis (XML 방식), JSP |
+| **Database**  | MySQL                                  |
+| **API 연동**  | 알라딘 Open API                        |
+| **Session**   | Spring Session 기반 인증 처리          |
+|               |                                        |
+| **3D 에셋셋** |                                        |
 
 ---
 

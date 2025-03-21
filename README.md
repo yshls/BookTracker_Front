@@ -1,4 +1,4 @@
-# ![BookTracker 로고](README/logo.gif)
+# <img src="README_Img/logo.gif" width="200px">
 
 **[URECA] Mini Project - 북적북적**  
 **"독서 목표 설정 및 챌린지 달성 지원 웹사이트 구현을 통한 웹 아키텍처 이해"**  

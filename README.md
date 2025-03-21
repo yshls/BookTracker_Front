@@ -1,4 +1,4 @@
-# **(README\logo.gif) BookTracker - 독서 챌린지 웹 애플리케이션**
+# ![BookTracker 로고](README/logo.gif)
 
 **[URECA] Mini Project 1 - 양세현, 황주경**  
 **"독서 목표 설정 및 챌린지 달성을 지원하는 웹사이트"**  

@@ -41,10 +41,10 @@ document.addEventListener('DOMContentLoaded', async function () {
       const response = await axios.get('http://localhost:8080/api/goal/get', {
         headers: { Authorization: token },
       });
-      console.log('📊 서버에서 불러온 목표 데이터:', response.data);
+      console.log(' 서버에서 불러온 목표 데이터:', response.data);
 
       if (!response.data || response.data.targetBooks === undefined) {
-        console.log('📌 설정된 목표 없음.');
+        console.log(' 설정된 목표 없음.');
         goalSetup.style.display = 'block';
         progressSection.style.display = 'none';
         isGoalSet = false;
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       }
       applyGoalData(response.data); // 불러온 목표 데이터 적용
     } catch (error) {
-      console.error('❌ 목표 데이터 불러오기 실패:', error);
+      console.error(' 목표 데이터 불러오기 실패:', error);
     }
   }
 
@@ -74,10 +74,9 @@ document.addEventListener('DOMContentLoaded', async function () {
     isGoalSet = true;
     openModalBtn.style.display = 'block';
     renderChart();
-    //  목표가 설정된 경우 독서 목표 창 자동으로 열기
     const goalContainer = document.querySelector('.goal-container');
     if (goalContainer) {
-      goalContainer.classList.add('open'); // 목표창 자동으로 열기
+      goalContainer.classList.add('open');
     }
     //  목표가 이미 달성된 경우 newGoalModal이 뜨지 않도록 수정
     if (!goalCompleted) {
@@ -89,7 +88,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   //  (2) 목표 저장 (서버 요청)
   saveGoalBtn.addEventListener('click', async function () {
     let newTotal = goalInput.value;
-    console.log('🎯 목표 입력 값:', newTotal);
+    console.log('목표 입력 값:', newTotal);
 
     if (!newTotal || isNaN(newTotal) || newTotal <= 0) {
       alert('올바른 목표를 입력해주세요!');
@@ -122,7 +121,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       goalSetup.style.display = 'none';
       progressSection.style.display = 'block';
       isGoalSet = true; // 목표 설정됨
-      openModalBtn.style.display = 'block'; // ✅ 목표 설정 버튼 보이기
+      openModalBtn.style.display = 'block';
       goalCompleted = false; // 새 목표 설정 시 목표 완료 상태 초기화
 
       // 새 목표를 sessionStorage에 저장
@@ -176,7 +175,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       //  삭제 후 최신 목표 데이터 불러오기
       await fetchGoal();
     } catch (error) {
-      console.error('❌ 목표 삭제 실패:', error);
+      console.error(' 목표 삭제 실패:', error);
       alert('목표 삭제 중 오류가 발생했습니다.');
     }
   }
@@ -184,7 +183,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   deleteGoalBtn.addEventListener('click', deleteGoal);
   //  (4) 목표 설정 모달 열기/닫기
   openModalBtn.addEventListener('click', function () {
-    console.log('📝 목표 설정 버튼 클릭됨');
+    console.log(' 목표 설정 버튼 클릭됨');
     modal.style.display = 'flex';
   });
   closeModalBtn.addEventListener('click', function () {
@@ -259,7 +258,7 @@ document.addEventListener('DOMContentLoaded', async function () {
           headers: { Authorization: token },
         });
 
-        console.log('📘 읽은 책 수 업데이트 성공');
+        console.log(' 읽은 책 수 업데이트 성공');
         updateProgress();
 
         //  sessionStorage의 목표 데이터도 함께 업데이트
@@ -269,7 +268,7 @@ document.addEventListener('DOMContentLoaded', async function () {
           sessionStorage.setItem('goalData', JSON.stringify(goalData));
         }
       } catch (error) {
-        console.error('❌ 읽은 책 수 업데이트 실패:', error);
+        console.error(' 읽은 책 수 업데이트 실패:', error);
       }
     }
 
@@ -355,7 +354,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  // ✅ URL에서 선택된 탭 index 가져오기
+  // URL에서 선택된 탭 index 가져오기
   const urlParams = new URLSearchParams(window.location.search);
   let activeIndex = urlParams.get('tab') ? parseInt(urlParams.get('tab')) : 0;
 
@@ -364,7 +363,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   bookDesc.innerHTML = getBookDesc(activeIndex);
   await fetchBooksByStatus(status);
 
-  // ✅ 탭 클릭 이벤트 추가
+  // 탭 클릭 이벤트 추가
   tabs.forEach((tab, index) => {
     tab.addEventListener('click', async () => {
       tabs.forEach((t) => t.classList.remove('active'));
@@ -374,13 +373,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       bookDesc.innerHTML = getBookDesc(index);
       await fetchBooksByStatus(status);
 
-      // ✅ URL을 업데이트하여 새로고침해도 유지됨
+      // URL을 업데이트하여 새로고침해도 유지됨
       history.pushState(null, '', `?tab=${index}`);
     });
   });
 });
 
-// ✅ 탭 인덱스에 따른 책 상태 반환
+// 탭 인덱스에 따른 책 상태 반환
 function getStatus(index) {
   switch (index) {
     case 0:
@@ -392,7 +391,7 @@ function getStatus(index) {
   }
 }
 
-// ✅ 탭 인덱스에 따른 설명 반환
+// 탭 인덱스에 따른 설명 반환
 function getBookDesc(index) {
   switch (index) {
     case 0:
@@ -555,8 +554,6 @@ async function updateBookStatus(book, newStatus) {
   }
 }
 
-// 변경된 status에 맞게 탭 자동 변경
-
 function updateActiveTab(status) {
   const tabs = document.querySelectorAll('.menu');
   const bookDesc = document.querySelector('.book-desc h4');
@@ -578,7 +575,7 @@ function updateActiveTab(status) {
         '읽고 싶은 책을 등록해보세요 <i class="fa-regular fa-face-smile"></i>';
       break;
   }
-  // 모든 탭에서 'active' 제거 후 변경된 status의 탭에 'active' 추가
+
   tabs.forEach((tab) => tab.classList.remove('active'));
   tabs[index].classList.add('active');
 }
@@ -595,21 +592,21 @@ async function fetchUserBooks(status = null) {
   try {
     let url = 'http://localhost:8080/api/books/user-books';
     if (status) {
-      url += `?status=${status}`; // 특정 상태만 불러오기
+      url += `?status=${status}`;
     }
     const response = await axios.get(url, {
       headers: { Authorization: token },
     });
     const books = response.data;
     console.log(`${status || '전체'} 책 목록 불러옴:`, books);
-    renderBooks(books, status); // 특정 상태만 렌더링
+    renderBooks(books, status);
     return books;
   } catch (error) {
     console.error('책 목록 불러오기 실패:', error);
     return [];
   }
 }
-// 책삭제
+
 async function deleteBook(book_id) {
   const token = sessionStorage.getItem('Authorization');
   console.log('삭제 요청 - book_id:', book_id, 'token:', token);
@@ -627,8 +624,7 @@ async function deleteBook(book_id) {
       }
     );
     console.log('삭제 성공:', response.data);
-    alert(response.data); // 서버에서 온 응답 메시지 표시
-    // 페이지 자동 새로고침 (삭제 후 목록 갱신)
+    alert(response.data);
     window.location.reload();
   } catch (error) {
     console.error('책 삭제 실패:', error.response?.data || error.message);
@@ -734,37 +730,38 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
   }
 });
-// `setInterval`을 저장할 변수
+
 let loginCheckInterval;
-// `setInterval`을 시작하는 함수 (토큰 만료 체크 주기적 실행)
+
 function startLoginCheckInterval() {
   // 기존에 실행 중인 `setInterval`이 있다면 제거
   if (loginCheckInterval) clearInterval(loginCheckInterval);
   // 60초마다 `checkLoginStatus` 실행
   loginCheckInterval = setInterval(checkLoginStatus, 60000);
 }
-// 토큰 만료 여부 확인 함수
+
 async function checkLoginStatus() {
   const token = sessionStorage.getItem('Authorization');
-  if (!token) return; // 토큰이 없으면 바로 종료 (로그인 안 된 상태)
+  if (!token) return;
   try {
     const response = await axios.get('http://localhost:8080/checkToken', {
       headers: { Authorization: token },
     });
     if (response.data.expired === 'true') {
       clearInterval(loginCheckInterval); //만료되었으면 `setInterval` 중지
-      showLogoutModal(); // ✅ 로그아웃 모달 띄우기
+      showLogoutModal();
     } else if (response.data.newToken) {
       //  백엔드에서 새로운 토큰이 제공되면 갱신
       sessionStorage.setItem('Authorization', response.data.newToken);
-      console.log('✅ 토큰 갱신 완료:', response.data.newToken);
+      console.log('토큰 갱신 완료:', response.data.newToken);
       //  새로운 토큰이 있으면 `setInterval`을 다시 시작
       startLoginCheckInterval();
     }
   } catch (error) {
-    console.error('❌ 로그인 상태 확인 오류:', error);
+    console.error('로그인 상태 확인 오류:', error);
   }
 }
+
 // ========================================
 // ✅ 로그아웃 함수 -> 로그인 화면으로 이동
 // ========================================
@@ -785,12 +782,13 @@ async function logout() {
       }
     );
   } catch (error) {
-    console.error('❌ 로그아웃 실패:', error);
+    console.error(' 로그아웃 실패:', error);
   }
   //  클라이언트의 sessionStorage 삭제 후 로그인 페이지로 이동
   sessionStorage.clear();
   window.location.href = '../Login/login.html';
 }
+
 // ===========================================
 // ✅ 로그아웃 모달 띄우기
 // ===========================================

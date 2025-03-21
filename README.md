@@ -38,16 +38,17 @@
 
 ## **📸 Screenshots**
 
-| 기능                      | 화면                             |
+| 기능                      | 화면                              |
 | ------------------------- | -------------------------------- |
-| **회원가입**              | ![회원가입](README/signup.jpeg)  |
-| **로그인**                | ![로그인](README/login.jpeg)     |
-| **홈 화면**               | ![홈](README/home.jpeg)          |
-| **도서 검색 기능**        | ![도서 검색](README/search.jpeg) |
-| **도서 추가 & 상태 변경** | ![책 추가](README/status.png)    |
-| **도서 삭제**             | ![책 삭제](README/delete.png)    |
-| **독서 목표 설정**        | ![목표 설정](README/goal.png)    |
-| **차트 시각화**           | ![차트](README/chart.jpeg)       |
+| **회원가입**              | <img src="README/signup.jpeg" width="450px">  |
+| **로그인**                | <img src="README/login.jpeg" width="450px">  |
+| **홈 화면**               | <img src="README/home.jpeg" width="450px">  |
+| **도서 검색 기능**        | <img src="README/search.jpeg" width="450px">" |
+| **도서 추가 & 상태 변경** | <img src="README/status.png" width="450px">  |
+| **도서 삭제**             | <img src="README/delete.png" width="450px">  |
+| **독서 목표 설정**        | <img src="README/goal.png" width="450px">    |
+| **차트 시각화**           | <img src="README/chart.jpeg" width="450px">  |
+
 
 ## 🔗 **GitHub Repository**
 
@@ -57,9 +58,6 @@
 ---
 
 ## 🔥 주요 기능 (Features)
-
-## 🔥 주요 기능 (Features)
-
 ### 1️⃣ 회원가입 & 로그인
 
 - **Session 기반 인증 (세션 쿠키 활용)**
@@ -122,12 +120,4 @@
 - **도서 검색, 독서 목표 설정, 진행률 추적** 기능을 제공하여 **체계적인 독서 관리** 지원
 - **직관적인 UI/UX**와 **시각적 데이터 제공 (차트 기반 진행률 표시)**
 
----
-
-### 주요 기능 요약
-
-- **Session 기반 회원가입 & 로그인** (사용자별 데이터 관리)
-- **알라딘 API 연동 도서 검색 기능**
-- **연간 독서 목표 설정 및 진행률 시각화 (`chart.js`)**
-- **도서 상태 관리 (읽고 싶어요 → 읽고 있어요 → 다 읽었어요)**
-- **페이지 기반 독서 진행률 관리**
+*

@@ -8,15 +8,15 @@
 
 ## 📌 **Table of Contents**
 
-- [📌 Overview](#overview)
-- [🎯 The Challenge](#the-challenge)
-- [📸 Screenshots](#screenshots)
-- [🚀 Live Demo](#live-demo)
-- [🔥 Features](#features)
-- [🛠 Built With](#built-with)
-- [⚙️ Setup](#setup)
-- [👨‍💻 Author](#author)
-- [🔥 최종 정리](#최종-정리)
+- [📌 Overview](#📌-overview)
+- [🎯 The Challenge](#🎯-the-challenge)
+- [📸 Screenshots](#📸-screenshots)
+- [🚀 Live Demo](#🚀-live-demo)
+- [🔥 Features](#🔥-features)
+- [🛠 Built With](#🛠-built-with)
+- [⚙️ Setup](#⚙️-setup)
+- [👨‍💻 Author](#👨‍💻-author)
+- [🔥 최종 정리](#🔥-최종-정리)
 
 ---
 

@@ -29,15 +29,14 @@
 
 | 기능                      | 화면                              | 설명 |
 | ------------------------- | -------------------------------- | ------------------------------------------------- |
-| **회원가입**              | <img src="README/signup.jpeg" width="550px">  | 사용자는 이메일과 비밀번호를 입력하여 회원가입할 수 있습니다. |
-| **로그인**                | <img src="README/login.jpeg" width="550px">  | 기존 계정으로 로그인하여 자신의 독서 목표 및 진행을 관리할 수 있습니다. |
-| **홈 화면**               | <img src="README/home.jpeg" width="550px">  | 사용자의 현재 독서 목표 진행률과 책 목록을 한눈에 볼 수 있습니다. |
-| **도서 검색 기능**        | <img src="README/search.jpeg" width="550px">  | 알라딘 API를 활용하여 원하는 책을 검색할 수 있습니다. |
-| **도서 추가 & 상태 변경** | <img src="README/status.png" width="550px">  | 검색한 책을 독서 목록에 추가하고, 현재 읽고 있는 상태를 변경할 수 있습니다. |
-| **도서 삭제**             | <img src="README/delete.png" width="550px">  | 추가된 책을 독서 목록에서 삭제할 수 있습니다. |
-| **독서 목표 설정**        | <img src="README/goal.png" width="550px">  | 연간 독서 목표를 설정하고, 목표 도서 수를 조정할 수 있습니다. |
-| **차트 시각화**           | <img src="README/chart.jpeg" width="550px">  | 사용자의 독서 진행률을 `chart.js`를 활용하여 시각적으로 확인할 수 있습니다. |
-
+| **회원가입**              | <img src="README/signup.gif" width="550px">  | 사용자는 이메일과 비밀번호를 입력하여 회원가입할 수 있습니다. |
+| **로그인**                | <img src="README/login.gif" width="550px">  | 기존 계정으로 로그인하여 자신의 독서 목표 및 진행을 관리할 수 있습니다. |
+| **토큰 만료 시 로그아웃** | <img src="README/token.gif" width="550px">  | 로그인 토큰이 만료되면 자동으로 로그아웃되어 보안을 유지합니다. |
+| **홈 화면**               | <img src="README/home.gif" width="550px">  | 사용자의 현재 독서 목표 진행률과 책 목록을 한눈에 볼 수 있습니다. |
+| **도서 검색 기능**        | <img src="README/search.gif" width="550px">  | 알라딘 API를 활용하여 원하는 책을 검색할 수 있습니다. |
+| **도서 추가 & 상태 변경** | <img src="README/status.gif" width="550px">  | 검색한 책을 독서 목록에 추가하고, 현재 읽고 있는 상태를 변경할 수 있습니다. |
+| **도서 삭제**             | <img src="README/delete.gif" width="550px">  | 추가된 책을 독서 목록에서 삭제할 수 있습니다. |
+| **독서 목표 설정**        | <img src="README/goal.gif" width="550px">  | 연간 독서 목표를 설정하고, 목표 도서 수를 조정할 수 있습니다. |
 ---
 
 ## Features

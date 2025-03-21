@@ -5,20 +5,17 @@ const inputField = document.getElementById('searchInput');
 const resultArea = document.getElementById('resultArea');
 const clearBtn = document.getElementById('clearBtn');
 
-// 엔터 입력 시 검색 실행
 inputField.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
     searchBooks(inputField.value);
   }
 });
 
-// clear 버튼 클릭 시 초기화
 clearBtn.addEventListener('click', () => {
   inputField.value = '';
   resultArea.innerHTML = '';
 });
 
-// 도서 검색 함수
 function searchBooks(keyword) {
   axios
     .get(
@@ -59,7 +56,6 @@ function renderSearchResults(data) {
         </div>
       `;
 
-      // 상태 버튼
       const statusBtn = div.querySelector('.status-btn');
 
       statusBtn.addEventListener('click', () => {
@@ -164,7 +160,7 @@ function showToast(message) {
 document.addEventListener('DOMContentLoaded', () => {
   console.log(' 페이지 로드 완료, 책 상태 업데이트 시작');
 
-  const token = sessionStorage.getItem('Authorization'); // 저장된 로그인 토큰 가져오기
+  const token = sessionStorage.getItem('Authorization');
   if (!token) {
     console.log('토큰 없음, 로그인 필요');
     return;
@@ -181,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
         userBooks
       );
 
-      // UI 업데이트 (저장된 책 버튼 상태 유지)
+      // 저장된 책 버튼 상태 유지
       userBooks.forEach((book) => updateBookUI(book.title));
     })
     .catch((error) => {
@@ -236,34 +232,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
-// function enableButtonsAfterLogin() {
-//   const token = sessionStorage.getItem('Authorization'); // 로그인 토큰 확인
-//   if (token) {
-//     document.querySelectorAll('.status-btn').forEach((button) => {
-//       button.disabled = false; // 로그인 후 버튼 활성화
-//       button.removeEventListener('click', showToast); // 기존의 "로그인 먼저 하세요" 메시지 제거
-//     });
-//   }
-// }
-
-// document.getElementById('loginBtn').addEventListener('click', async () => {
-//   const email = document.getElementById('loginEmail').value;
-//   const pwd = document.getElementById('loginPwd').value;
-//   const data = { email, pwd };
-
-//   const response = await axios.post('http://localhost:8080/tokenLogin', data);
-
-//   if (response.data.Authorization) {
-//     sessionStorage.setItem('Authorization', response.data.Authorization);
-//     sessionStorage.setItem('nickname', response.data.nickname);
-//     axios.defaults.headers.common['Authorization'] =
-//       response.data.Authorization;
-//     // 로그인 후 버튼 활성화
-//     enableButtonsAfterLogin();
-
-//     showToast(` ${response.data.nickname}님, 환영합니다!`);
-//   } else { 로그인 실패. 다시 시도해주세요.');
-//   }
-// });
-

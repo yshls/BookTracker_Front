@@ -38,18 +38,16 @@
 
 ## **📸 Screenshots**
 
-| 기능                      | 화면                              |
-| ------------------------- | --------------------------------- | --- |
-| **회원가입**              | ![회원가입입](README/signup.jpeg) |
-| **로그인**                | ![로그인](README/login.jpeg)      |
-| **홈 화면**               | ![홈](README/home.jpeg)           |
-| **도서 검색 기능**        | ![도서 검색](README/search.jpeg)  |
-| **도서 추가 & 상태 변경** | ![책 추가](README/status.png      |
-| **도서 삭제**             | ![책 삭제](README/delete.png)     |
-| **독서 목표 설정**        | ![목표 설정](README/goal.png)     |     |
-| **차트 시각화**           | ![차트](README/chart.jpeg)        |
-
----
+| 기능                      | 화면                             |
+| ------------------------- | -------------------------------- |
+| **회원가입**              | ![회원가입](README/signup.jpeg)  |
+| **로그인**                | ![로그인](README/login.jpeg)     |
+| **홈 화면**               | ![홈](README/home.jpeg)          |
+| **도서 검색 기능**        | ![도서 검색](README/search.jpeg) |
+| **도서 추가 & 상태 변경** | ![책 추가](README/status.png)    |
+| **도서 삭제**             | ![책 삭제](README/delete.png)    |
+| **독서 목표 설정**        | ![목표 설정](README/goal.png)    |
+| **차트 시각화**           | ![차트](README/chart.jpeg)       |
 
 ## 🔗 **GitHub Repository**
 
@@ -100,7 +98,6 @@
 | **Database**     | MySQL                                  |
 | **API 연동**     | 알라딘 Open API                        |
 | **Session**      | Spring Session 기반 인증 처리          |
-|                  |                                        |
 | **3D 에셋 출처** | pixcap                                 |
 
 ---
